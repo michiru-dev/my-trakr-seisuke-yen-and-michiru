@@ -1,0 +1,20 @@
+#new-transaction {
+    width: 60%;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem 0;
+}
+
+#new-transaction select {
+    width: 10rem;
+}
+
+#transaction-options {
+    display: flex;
+}
+
+#new-transactoin #category {
+
+}
