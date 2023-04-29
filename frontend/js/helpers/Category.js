@@ -4,9 +4,14 @@ export function showCategories() {
         type: 'get',
         dataType:'json',
     }).done((categories) => {
-        
         for(const category of categories) {
-            console.log(category.id, category.name)
+            deployCategory(category.name)
         }
     })
+}
+
+function deployCategory(category) {
+    $("#categories-menu").append(`
+        <option>${category}</option>
+    `)
 }

@@ -1,9 +1,9 @@
 import { showCategories } from './helpers/Category.js'
-
+import { addTestData } from './default.js'
 
 $(() => {  
 
-
+  addTestData()
   // showAccounts()
   // showTransactions()
   showCategories()
