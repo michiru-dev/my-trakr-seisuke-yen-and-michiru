@@ -1,4 +1,4 @@
-import { showCategories } from './helpers/Category.js'
+import { showCategories, addNewCategory } from './helpers/Category.js'
 import { addTestData } from './default.js'
 
 $(() => {  
@@ -7,6 +7,10 @@ $(() => {
   // showAccounts()
   // showTransactions()
   showCategories()
+  $("#add-new-category-btn").on("click", () => {
+    addNewCategory()
+  })
+  
 
   // $("addNewAccount").on("click", () => {
   //   addNewAccount(data)

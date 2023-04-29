@@ -10,8 +10,15 @@ export function showCategories() {
     })
 }
 
+export function addNewCategory() {
+    const newCategory = $("#new-category-input").val()
+    deployCategory(newCategory)
+    $("#new-category-input").val("")
+}
+
 function deployCategory(category) {
     $("#categories-menu").append(`
         <option>${category}</option>
     `)
 }
+
