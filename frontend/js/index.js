@@ -1,5 +1,5 @@
 import { showCategories, addNewCategory } from './helpers/Category.js'
-import { handleNewTransaction, updateAccounts } from './helpers/Transaction.js'
+import { handleNewTransaction, updateAccounts, updateAccountSelection } from './helpers/Transaction.js'
 import { addTestData } from './default.js'
 
 $(() => {  
@@ -8,11 +8,15 @@ $(() => {
   // showAccounts()
   // showTransactions()
   showCategories()
+  updateAccountSelection()
   $("#add-new-category-btn").on("click", () => {
     addNewCategory()
   })
   $("#add-new-transaction-btn").on("click", () => {
     handleNewTransaction()
+  })
+  $("#transaction-options").on("change", () => {
+    updateAccountSelection()
   })
   
   $.ajax({

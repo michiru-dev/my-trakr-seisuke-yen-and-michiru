@@ -70,3 +70,16 @@ export function handleNewTransaction() {
     // Call Yen's function
     // addNewTransaction()
 }
+
+export function updateAccountSelection() {
+    const selectedTransactionType = $("input[name=transaction-option]:checked").val()
+    if(selectedTransactionType === "Transfer") {
+        $("#accounts-menu").prop("disabled", true)
+        $("#from-accounts-menu").prop("disabled", false)
+        $("#to-accounts-menu").prop("disabled", false)
+    } else {
+        $("#accounts-menu").prop("disabled", false)
+        $("#from-accounts-menu").prop("disabled", true)
+        $("#to-accounts-menu").prop("disabled", true)
+    }
+}
