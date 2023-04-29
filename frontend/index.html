@@ -17,32 +17,38 @@
   <body>
     myTrakr
     <main>
-      <form action="">
+      <form>
         New Account:
         <input type="text" />
         <button>Add new account</button>
       </form>
-      <form id="new-transaction" action="">
+      <div id="new-transaction">
         New Transaction: 
         <div id="transaction-options">
-          <label><input type="radio" name="transaction-option"/>Deposit</label>
-          <label><input type="radio" name="transaction-option"/>Withdraw</label>
-          <label><input type="radio" name="transaction-option"/>Transfer</label>
+          <label><input type="radio" name="transaction-option" value="Deposit" checked/>Deposit</label>
+          <label><input type="radio" name="transaction-option" value="Withdraw"/>Withdraw</label>
+          <label><input type="radio" name="transaction-option" value="Transfer"/>Transfer</label>
         </div>
         <div id="target">
           Account:
-          <select></select>
+          <select id="accounts-menu">
+            <option value="">Select Account</option>
+          </select>
           From:
-          <select></select>
+          <select id="from-accounts-menu">
+            <option value="">Select Account</option>
+          </select>
 
           To:
-          <select></select>
+          <select id="to-accounts-menu">
+            <option value="">Select Account</option>
+          </select>
         </div>
 
         <div id="category">
           Category:
           <select id="categories-menu">
-            <option class="favorite-city" value="">Choose Category</option>
+            <option value="">Select Category</option>
           </select>
           <input id="new-category-input" type="text" />
           <button id="add-new-category-btn" type="button">Add new category</button>
@@ -50,16 +56,16 @@
 
         <div id="description">
           Description
-          <input type="text" />
+          <input id="description-input" type="text" />
         </div>
 
         <div>
           Amount:
-          <input type="number" />
+          <input id="amount-input" type="number" />
         </div>
 
-        <button>Add transaction</button>
-      </form>
+        <button id="add-new-transaction-btn">Add transaction</button>
+      </div>
  
 
       Account summary
@@ -69,7 +75,7 @@
       <table>
         <tr>
           <th>Id</th>
-          <th>Username</th>
+          <th>Username</th>vV
           <th>Transaction Type</th>
           <th>Category</th>
           <th>Description</th>
