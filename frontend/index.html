@@ -18,8 +18,8 @@
     <main>
       <form action="">
         New Account:
-        <input type="text" />
-        <button>Add new account</button>
+        <input class="addNewAccountText" type="text" />
+        <button id="addNewAccount">Add new account</button>
       </form>
       <form action="">
         New Transaction: Deposit
@@ -50,7 +50,20 @@
         <button>Add transaction</button>
       </form>
 
-      Account summary
+      <!-- account summary -->
+      <div class="accountSummaryBox">
+        <h2>Account summary</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Account</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+          <tbody id="accountAndBalance"></tbody>
+        </table>
+      </div>
+
       <ul></ul>
       Filter by account:
       <select></select>
