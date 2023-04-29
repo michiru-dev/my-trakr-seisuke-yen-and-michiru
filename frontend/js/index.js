@@ -1,18 +1,25 @@
-$(() => {
+import { showCategories } from './helpers/Category.js'
 
-  showAccounts()
-  showTransactions()
+
+$(() => {  
+
+
+  // showAccounts()
+  // showTransactions()
   showCategories()
 
-  $("addNewAccount").on("click", () => {
-    addNewAccount(data)
-  })
+  // $("addNewAccount").on("click", () => {
+  //   addNewAccount(data)
+  // })
 
-  $("addTransaction").on("click", () => {
-    addNewTransaction(data)
-  })
+  // $("addTransaction").on("click", () => {
+  //   addNewTransaction(data)
+  // })
   
-  $("addCategory").on("click", () => {
-    addNewCategory(data)
-  })
+  // $("addCategory").on("click", () => {
+  //   addNewCategory(data)
+  // })
 });
+
+
+  
