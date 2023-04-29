@@ -1,10 +1,8 @@
 import { showCategories, addNewCategory } from './helpers/Category.js'
 import { handleNewTransaction, updateAccounts, updateAccountSelection } from './helpers/Transaction.js'
-import { addTestData } from './default.js'
 
 $(() => {  
 
-  addTestData()
   // showAccounts()
   // showTransactions()
   showCategories()
