@@ -4,11 +4,12 @@ export function showTransactions() {
     // Show them to the list
 
     // Call Michiru's function
-    updateBalance(data)
+    // Possibly no need to call this because balance can be calculated by account info
+    updateBalance()
 }
 
 export function addNewTransaction() {
-    updateBalance(data)
+    updateBalance()
 }
 
 export function updateAccounts(accounts/*Array*/) {
@@ -21,6 +22,8 @@ export function updateAccounts(accounts/*Array*/) {
         $("#from-accounts-menu").append(accountOption)
         $("#to-accounts-menu").append(accountOption)
     }
+
+    // update accounts in filter
 }
 
 // function's name may need to be changed

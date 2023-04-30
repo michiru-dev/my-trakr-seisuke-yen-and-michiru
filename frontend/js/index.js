@@ -18,6 +18,8 @@ $(() => {
     updateAccountSelection()
   })
   
+  // This is a temporary code
+  // Should be deleted after Michiru's calling from Account.js is added
   $.ajax({
     url: "http://localhost:3000/accounts",
     type: 'get',

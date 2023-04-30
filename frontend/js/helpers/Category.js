@@ -1,13 +1,17 @@
+import { SERVER_URL } from './Common.js'
+const CATEGORY_ENDPOINT = SERVER_URL + "categories"
+
 export function showCategories() {
     // Even if there are already some categories, delete them to get and show again
     clearCategories()
 
     // Get categories from the server
     $.ajax({
-        url: "http://localhost:3000/categories",
+        url: CATEGORY_ENDPOINT,
         type: 'get',
         dataType:'json',
-    }).done((categories) => {
+    })
+    .done((categories) => {
         // Deploy each category to the pull-down menu
         for(const category of categories) {
             deployCategory(category.name)
@@ -18,11 +22,12 @@ export function showCategories() {
 export function addNewCategory() {
     const newCategory = $("input[name=new-category-input]").val()
     $.ajax({
-        url: "http://localhost:3000/categories",
+        url: CATEGORY_ENDPOINT,
         type: 'post',
         dataType:'json',
         data: { newCategory : newCategory }
-    }).done((response) => {        
+    })
+    .done((response) => {        
         // Get all the categories again and show them
         showCategories()
 
