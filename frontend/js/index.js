@@ -10,7 +10,8 @@ $(() => {
   $("#add-new-category-btn").on("click", () => {
     addNewCategory()
   })
-  $("#add-new-transaction-btn").on("click", () => {
+  $("#new-transaction").on("submit", (event) => {
+    event.preventDefault()
     handleNewTransaction()
   })
   $("#transaction-options").on("change", () => {

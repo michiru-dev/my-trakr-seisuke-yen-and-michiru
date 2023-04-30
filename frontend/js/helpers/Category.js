@@ -11,9 +11,9 @@ export function showCategories() {
 }
 
 export function addNewCategory() {
-    const newCategory = $("#new-category-input").val()
+    const newCategory = $("input[name=new-category-input]").val()
     deployCategory(newCategory)
-    $("#new-category-input").val("")
+    $("input[name=new-category-input]").val("")
 }
 
 function deployCategory(category) {

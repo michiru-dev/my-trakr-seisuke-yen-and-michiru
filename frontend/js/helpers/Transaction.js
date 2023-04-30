@@ -56,8 +56,8 @@ export function handleNewTransaction() {
         }
     })
 
-    let description = $("#description-input").val()
-    let amount = $("#amount-input").val()
+    let description = $("input[name=description-input]").val()
+    let amount = $("input[name=amount-input]").val()
 
     console.log("TransactionType:", transactionType)
     console.log("Account:", accountName)
@@ -108,8 +108,8 @@ function clearNewTransactionInput() {
     $("#categories-menu").children().first().prop("selected", true)
 
     // Empty input text
-    $("#description-input").val("")
-    $("#amount-input").val("")
+    $("input[name=description-input]").val("")
+    $("input[name=amount-input]").val("")
 
     // Make From and To fields disabled 
     $("#accounts-menu").prop("disabled", true)

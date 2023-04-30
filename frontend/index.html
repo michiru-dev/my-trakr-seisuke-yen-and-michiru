@@ -22,7 +22,7 @@
         <input type="text" />
         <button>Add new account</button>
       </form>
-      <div id="new-transaction">
+      <form id="new-transaction">
         New Transaction: 
         <div id="transaction-options">
           <label><input type="radio" name="transaction-option" value="Deposit" checked/>Deposit</label>
@@ -50,22 +50,30 @@
           <select id="categories-menu">
             <option value="">Select Category</option>
           </select>
-          <input id="new-category-input" type="text" />
+          <input name="new-category-input" type="text" />
           <button id="add-new-category-btn" type="button">Add new category</button>
         </div>
 
         <div id="description">
           Description
-          <input id="description-input" type="text" />
+          <input id="description-input" name="description-input" type="text" />
         </div>
 
         <div>
           Amount:
-          <input id="amount-input" type="number" />
+          <input id="amount-input" name="amount-input" type="text" pattern="^[1-9][0-9]*$" title="Please input number"/>
         </div>
 
-        <button id="add-new-transaction-btn">Add transaction</button>
-      </div>
+
+        <input id="add-new-transaction-btn" type="submit">Add transaction
+      </form>
+      <form>
+        <input
+          type="text"
+          pattern="^[1-9][0-9]*$"
+        >
+        <input type="submit" >
+      </form>
  
 
       Account summary
