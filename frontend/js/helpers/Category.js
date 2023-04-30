@@ -31,6 +31,9 @@ export function addNewCategory() {
         // Get all the categories again and show them
         showCategories()
 
+        // Show animation that indicates a new category has been added
+        gsap.to("#categories-menu", { scale: 1.2, duration: .08, repeat: 1, yoyo: true })
+
         // Clear the category text input by the user
         $("input[name=new-category-input]").val("")
     })

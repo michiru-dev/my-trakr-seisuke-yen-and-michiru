@@ -10,6 +10,7 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
       defer
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="./css/transaction.css" />
     <link rel="stylesheet" href="./css/index.css" />
@@ -55,12 +56,17 @@
         </div>
 
         <div id="category">
-          Category:
-          <select id="categories-menu">
-            <option value="">Select Category</option>
-          </select>
-          <input name="new-category-input" type="text" />
-          <button id="add-new-category-btn" type="button">Add new category</button>
+          <div>
+            Category:
+            <select id="categories-menu">
+              <option value="">Select Category</option>
+            </select>
+          </div>
+          <div>
+            Add new category:
+            <input name="new-category-input" type="text" />
+            <button id="add-new-category-btn" type="button">Add</button>
+          </div>
         </div>
 
         <div id="description">
@@ -75,13 +81,6 @@
 
 
         <button id="add-new-transaction-btn" type="submit">Add transaction</button>
-      </form>
-      <form>
-        <input
-          type="text"
-          pattern="^[1-9][0-9]*$"
-        >
-        <input type="submit" >
       </form>
  
 

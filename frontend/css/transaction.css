@@ -32,7 +32,17 @@
     gap: 0 1rem;
 }
 
+#transfer-target {
+    display: none;
+}
+
 #transfer-direction {
     height: 100%;
     width: auto;
+}
+
+#category {
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
 }
