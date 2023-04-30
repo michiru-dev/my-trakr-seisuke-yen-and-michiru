@@ -81,12 +81,36 @@ export function updateAccountSelection() {
     const selectedTransactionType = $("input[name=transaction-option]:checked").val()
 
     // From and To fields can only be used for Transfer
-    if(selectedTransactionType === "Transfer") {
-        $("#deposit-withdraw-target").css({display: "none"})
-        $("#transfer-target").css({display: "flex"})
-    } else {
+    if(selectedTransactionType === "Deposit" ||
+       selectedTransactionType === "Withdraw") {
+
+        // Show the input field for Deposit and Withdraw
         $("#deposit-withdraw-target").css({display: "flex"})
+
+        // Hide the input field for Transfer
         $("#transfer-target").css({display: "none"})
+
+        // Make the input field for Deposit and Withdraw required
+        $("#accounts-menu").prop("required", true)
+
+        // Make the input field for Transfer not required
+        $("#from-accounts-menu").prop("required", false)
+        $("#to-accounts-menu").prop("required", false)
+
+    } else if (selectedTransactionType === "Transfer") {
+        
+        // Show the input field for Transfer
+        $("#transfer-target").css({display: "flex"})
+
+        // Hide the input field for Deposit and Withdraw 
+        $("#deposit-withdraw-target").css({display: "none"})
+
+        // Make the input field for Transfer required
+        $("#from-accounts-menu").prop("required", true)
+        $("#to-accounts-menu").prop("required", true)
+
+        // Make the input field for Deposit and Withdraw not required
+        $("#accounts-menu").prop("required", false)
     }
 }
 
@@ -112,8 +136,5 @@ function clearNewTransactionInput() {
     $("input[name=description-input]").val("")
     $("input[name=amount-input]").val("")
 
-    // Make From and To fields disabled 
-    $("#accounts-menu").prop("disabled", true)
-    $("#from-accounts-menu").prop("disabled", false)
-    $("#to-accounts-menu").prop("disabled", false)
+    updateAccountSelection()
 }
