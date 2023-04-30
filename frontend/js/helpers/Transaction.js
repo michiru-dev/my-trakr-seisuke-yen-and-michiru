@@ -7,7 +7,7 @@ export function showTransactions() {
 
   // Call Michiru's function
   const data = "";
-  updateBalance(data);
+  //   updateBalance(data);
 }
 
 export function addNewTransaction(accouts /*Array*/) {
