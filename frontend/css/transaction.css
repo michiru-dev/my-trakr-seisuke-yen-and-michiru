@@ -18,3 +18,21 @@
 #new-transactoin #category {
 
 }
+
+#target {
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+}
+
+#deposit-withdraw-target, #transfer-target {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+}
+
+#transfer-direction {
+    height: 100%;
+    width: auto;
+}

@@ -30,19 +30,28 @@
           <label><input type="radio" name="transaction-option" value="Transfer"/>Transfer</label>
         </div>
         <div id="target">
-          Account:
-          <select id="accounts-menu">
-            <option value="">Select Account</option>
-          </select>
-          From:
-          <select id="from-accounts-menu">
-            <option value="">Select Account</option>
-          </select>
+          <div id="deposit-withdraw-target">
+            Account:
+            <select id="accounts-menu">
+              <option value="">Select Account</option>
+            </select>
+          </div>
 
-          To:
-          <select id="to-accounts-menu">
-            <option value="">Select Account</option>
-          </select>
+          <div id="transfer-target">
+            <span>
+              From:
+              <select id="from-accounts-menu">
+                <option value="">Select Account</option>
+              </select>
+            </span>
+            <img id="transfer-direction" src="img/right-arrow.png">
+            <span>
+              To:
+              <select id="to-accounts-menu">
+                <option value="">Select Account</option>
+              </select>
+            </span>
+          </div>
         </div>
 
         <div id="category">
@@ -65,7 +74,7 @@
         </div>
 
 
-        <input id="add-new-transaction-btn" type="submit">Add transaction
+        <button id="add-new-transaction-btn" type="submit">Add transaction</button>
       </form>
       <form>
         <input

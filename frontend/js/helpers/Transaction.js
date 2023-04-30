@@ -82,13 +82,11 @@ export function updateAccountSelection() {
 
     // From and To fields can only be used for Transfer
     if(selectedTransactionType === "Transfer") {
-        $("#accounts-menu").prop("disabled", true)
-        $("#from-accounts-menu").prop("disabled", false)
-        $("#to-accounts-menu").prop("disabled", false)
+        $("#deposit-withdraw-target").css({display: "none"})
+        $("#transfer-target").css({display: "flex"})
     } else {
-        $("#accounts-menu").prop("disabled", false)
-        $("#from-accounts-menu").prop("disabled", true)
-        $("#to-accounts-menu").prop("disabled", true)
+        $("#deposit-withdraw-target").css({display: "flex"})
+        $("#transfer-target").css({display: "none"})
     }
 }
 
