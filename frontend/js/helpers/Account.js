@@ -4,7 +4,6 @@ import { updateAccounts } from "./Transaction.js";
 // Show them to the list
 export function showAccounts() {
   updateBalance();
-  updateAccounts();
 }
 
 // POST a new account
@@ -15,7 +14,6 @@ export function addNewAccount() {
     newAccount: accountName,
   })
     .done(() => {
-      updateAccounts();
       showAccounts();
     })
     .fail((err) => console.log(err));
@@ -32,7 +30,6 @@ export function updateBalance() {
       const accountAndBalance = $("#accountAndBalance");
       $.each(accounts, (index, account) => {
         let balance = 0;
-        console.log(account);
         const row = $("<tr>");
         const accountName = $("<td>").text(account.username);
         $.each(account.transactions, (index, transaction) => {
@@ -61,6 +58,7 @@ export function updateBalance() {
         row.append(accountName, accountBalance);
         accountAndBalance.append(row);
       });
+      updateAccounts(accounts);
     })
     .fail((err) => console.log(err));
 }
