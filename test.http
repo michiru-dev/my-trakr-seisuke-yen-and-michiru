@@ -74,20 +74,12 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:3000/transactions
-content-type: application/json
+# POST http://localhost:3000/transactions
+# content-type: application/json
 
-{
-  "newTransaction": {
-    "accountId": null,
-    "accountIdFrom": 2, 
-    "accountIdTo": 3,
-    "type": "Transfer",
-    "amount": 500,
-    "categoryId": 3,
-    "description": "Buy food"
-  }
-}
+# {
+#   "newTransaction":"{\"accountId\":null,\"accountIdFrom\":1,\"accountIdTo\":2,\"type\":\"Transfer\",\"amount\":100,\"categoryId\":1,\"description\":\"salary april\"}"
+# }
 
 
 
