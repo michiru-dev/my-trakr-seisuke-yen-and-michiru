@@ -2,6 +2,25 @@ import { updateBalance } from "./Account.js";
 
 export function showTransactions() {
     // GET transations from API
+    $.ajax({
+      method: "get",
+      url: "http://localhost:3000/transactions",
+      contentType: "application/json",
+      data: JSON.stringify,
+     })
+     .done((data) => {
+      $.each(data,(index, transactionDetails) =>{
+        $("#id").append(`<li>${transactionDetails.index}</li>`)
+        $("#username").append(`<li>${transactionDetails.accountIdFrom}</li>`)
+        $("#transaction").append(`<li>${transactionDetails.type}</li>`)
+        $("#category").append(`<li>${transactionDetails.categoryId}</li>`)
+        $("#description").append(`<li>${transactionDetails.description}</li>`)
+        $("#amount").append(`<li>${transactionDetails.amount}</li>`)
+        $("#from").append(`<li>${transactionDetails.accountIdFrom}</li>`)
+        $("#to").append(`<li>${transactionDetails.accountIdTo}</li>`)
+      })
+    
+      // transaction
 
     // Show them to the list
 
