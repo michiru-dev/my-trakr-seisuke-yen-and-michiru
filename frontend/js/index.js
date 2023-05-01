@@ -1,12 +1,15 @@
 import { showCategories, addNewCategory } from './helpers/Category.js'
 import { handleNewTransaction, updateAccounts, updateAccountSelection } from './helpers/Transaction.js'
+import { showAccounts } from "./helpers/Account.js";
+import { showTransactions } from "./helpers/Transaction.js";
+import { addNewAccount } from "./helpers/Account.js";
 
 $(() => {  
-
-  // showAccounts()
-  // showTransactions()
+  showAccounts();
+  showTransactions()
   showCategories()
   updateAccountSelection()
+
   $("#add-new-category-btn").on("click", () => {
     addNewCategory()
   })
@@ -28,17 +31,17 @@ $(() => {
     updateAccounts(accounts)
   })
 
-  // $("addNewAccount").on("click", () => {
-  //   addNewAccount(data)
-  // })
+  $("addNewAccount").on("click", () => {
+    addNewAccount(data)
+  })
 
-  // $("addTransaction").on("click", () => {
-  //   addNewTransaction(data)
-  // })
+  $("addTransaction").on("click", () => {
+    addNewTransaction(data)
+  })
   
-  // $("addCategory").on("click", () => {
-  //   addNewCategory(data)
-  // })
+  $("addCategory").on("click", () => {
+    addNewCategory(data)
+  })
 });
 
 

@@ -1,3 +1,5 @@
+import { updateBalance } from "./Account.js";
+
 export function showTransactions() {
     // GET transations from API
 
@@ -5,11 +7,12 @@ export function showTransactions() {
 
     // Call Michiru's function
     // Possibly no need to call this because balance can be calculated by account info
-    updateBalance()
+
+    // updateBalance()
 }
 
 export function addNewTransaction() {
-    updateBalance()
+    // updateBalance()
 }
 
 export function updateAccounts(accounts/*Array*/) {
@@ -138,3 +141,4 @@ function clearNewTransactionInput() {
 
     updateAccountSelection()
 }
+
