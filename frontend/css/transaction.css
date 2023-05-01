@@ -1,0 +1,48 @@
+#new-transaction {
+    width: 60%;
+    margin: 5rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem 0;
+}
+
+#new-transaction select {
+    width: 10rem;
+}
+
+#transaction-options {
+    display: flex;
+}
+
+#new-transactoin #category {
+
+}
+
+#target {
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+}
+
+#deposit-withdraw-target, #transfer-target {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+}
+
+#transfer-target {
+    display: none;
+}
+
+#transfer-direction {
+    height: 100%;
+    width: auto;
+}
+
+#category {
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+}

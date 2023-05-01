@@ -10,45 +10,79 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
       defer
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="./css/transaction.css" />
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
     myTrakr
     <main>
-      <form action="">
+      <form>
         New Account:
         <input class="addNewAccountText" type="text" />
         <button id="addNewAccount">Add new account</button>
       </form>
-      <form action="">
-        New Transaction: Deposit
-        <input type="radio" />
-        Withdraw
-        <input type="radio" />
-        Transfer
-        <input type="radio" />
-        Account:
-        <select></select>
+      <form id="new-transaction">
+        New Transaction: 
+        <div id="transaction-options">
+          <label><input type="radio" name="transaction-option" value="Deposit" checked/>Deposit</label>
+          <label><input type="radio" name="transaction-option" value="Withdraw"/>Withdraw</label>
+          <label><input type="radio" name="transaction-option" value="Transfer"/>Transfer</label>
+        </div>
+        <div id="target">
+          <div id="deposit-withdraw-target">
+            Account:
+            <select id="accounts-menu">
+              <option value="">Select Account</option>
+            </select>
+          </div>
 
-        From:
-        <select></select>
+          <div id="transfer-target">
+            <span>
+              From:
+              <select id="from-accounts-menu">
+                <option value="">Select Account</option>
+              </select>
+            </span>
+            <img id="transfer-direction" src="img/right-arrow.png">
+            <span>
+              To:
+              <select id="to-accounts-menu">
+                <option value="">Select Account</option>
+              </select>
+            </span>
+          </div>
+        </div>
 
-        To:
-        <select></select>
-        Category:
-        <select></select>
-        <input type="text" />
-        <button type="button">Add new category</button>
+        <div id="category">
+          <div>
+            Category:
+            <select id="categories-menu">
+              <option value="">Select Category</option>
+            </select>
+          </div>
+          <div>
+            Add new category:
+            <input name="new-category-input" type="text" />
+            <button id="add-new-category-btn" type="button">Add</button>
+          </div>
+        </div>
 
-        Description
-        <input type="text" />
+        <div id="description">
+          Description
+          <input id="description-input" name="description-input" type="text" />
+        </div>
 
-        Amount:
-        <input type="number" />
+        <div>
+          Amount:
+          <input id="amount-input" name="amount-input" type="text" pattern="^[1-9][0-9]*$" title="Please input number" required/>
+        </div>
 
-        <button>Add transaction</button>
+
+        <button id="add-new-transaction-btn" type="submit">Add transaction</button>
       </form>
+ 
 
       <!-- account summary -->
       <div class="accountSummaryBox">
@@ -70,7 +104,7 @@
       <table>
         <tr>
           <th>Id</th>
-          <th>Username</th>
+          <th>Username</th>vV
           <th>Transaction Type</th>
           <th>Category</th>
           <th>Description</th>
