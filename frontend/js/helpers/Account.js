@@ -5,6 +5,7 @@ import { updateAccounts } from "./Transaction.js";
 export function showAccounts() {
   updateBalance();
 }
+//これなしでもいける？
 
 // POST a new account
 // Show them to the list
@@ -15,6 +16,8 @@ export function addNewAccount() {
   })
     .done(() => {
       showAccounts();
+      //ここもupdatebalanceでいける？
+      $(".addNewAccountText").val("");
     })
     .fail((err) => console.log(err));
 }
