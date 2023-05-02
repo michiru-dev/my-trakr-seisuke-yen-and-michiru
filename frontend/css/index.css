@@ -31,6 +31,18 @@ button, input {
   font-size: 16px;
 }
 
+input, select {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 5px #0073c5;
+  transition-property: box-shadow;
+  transition-duration: .2s;
+}
+
 .summaryAndtransactionDiv {
   width: 100%;
   display: flex;
@@ -245,6 +257,8 @@ input[name=transaction-option] {
 input[name=transaction-option]:checked + label {
   background-color: rgb(40, 122, 216);
   color: white;
+  transition-property: background-color, color;
+  transition-duration: .2s;
 }
 
 /* images that have input[] right after themselfves */
@@ -259,6 +273,14 @@ input[name=transaction-option]:checked + label {
   background-repeat: no-repeat;
   background-color: #f7f7f7;
   pointer-events: none;
+  outline: none;
+}
+
+#deposit-image:has(+input[name=transaction-option]:checked),
+#withdraw-image:has(+input[name=transaction-option]:checked) ,
+#transfer-image:has(+input[name=transaction-option]:checked) {
+  outline: 2px solid white;
+  background-color: #0073c5;
 }
 
 #deposit-image {

@@ -115,6 +115,17 @@ export function updateAccountSelection() {
         // Make the input field for Deposit and Withdraw not required
         $("#accounts-menu").prop("required", false)
     }
+
+    $("#transaction-options").children("input").each((index, inputElement) => {
+        let imagePath = ""
+        if($(inputElement).prop("checked")) {
+            imagePath = `img/${$(inputElement).next().prop("for")}-on.png`
+        } else {
+            imagePath = `img/${$(inputElement).next().prop("for")}-off.png`
+        }
+        console.log(imagePath)
+        $(inputElement).prev().prop("src", imagePath)
+    })
 }
 
 function clearNewTransactionInput() {
