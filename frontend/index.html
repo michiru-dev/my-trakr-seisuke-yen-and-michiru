@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>myTrakr</title>
+        <title>ExpenseTracker</title>
         <!-- jQuery link -->
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
@@ -16,126 +16,132 @@
         <link rel="stylesheet" href="./css/index.css" />
     </head>
     <body>
-        myTrakr
-        <main>
+        <header>
+            <h1>ExpenseTracker</h1>
             <form>
                 New Account:
                 <input class="addNewAccountText" type="text" />
-                <button id="addNewAccount">Add new account</button>
+                <button id="addNewAccount">Add</button>
             </form>
-            <form id="new-transaction">
-                New Transaction:
-                <div id="transaction-options">
-                    <label
-                        ><input
-                            type="radio"
-                            name="transaction-option"
-                            value="Deposit"
-                            checked
-                        />Deposit</label
-                    >
-                    <label
-                        ><input
-                            type="radio"
-                            name="transaction-option"
-                            value="Withdraw"
-                        />Withdraw</label
-                    >
-                    <label
-                        ><input
-                            type="radio"
-                            name="transaction-option"
-                            value="Transfer"
-                        />Transfer</label
-                    >
+        </header>
+        <main>
+            <div class="summaryAndtransactionDiv">
+                <!-- account summary -->
+                <div class="accountSummaryBox">
+                    <h2>Account summary</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="accountAndBalance"></tbody>
+                    </table>
                 </div>
-                <div id="target">
-                    <div id="deposit-withdraw-target">
-                        Account:
-                        <select id="accounts-menu">
-                            <option value="">Select Account</option>
-                        </select>
+                <form id="new-transaction">
+                    <h2>New Transaction</h2>
+                    <div id="transaction-options">
+                        <label
+                            ><input
+                                type="radio"
+                                name="transaction-option"
+                                value="Deposit"
+                                checked
+                            />Deposit</label
+                        >
+                        <label
+                            ><input
+                                type="radio"
+                                name="transaction-option"
+                                value="Withdraw"
+                            />Withdraw</label
+                        >
+                        <label
+                            ><input
+                                type="radio"
+                                name="transaction-option"
+                                value="Transfer"
+                            />Transfer</label
+                        >
                     </div>
-
-                    <div id="transfer-target">
-                        <span>
-                            From:
-                            <select id="from-accounts-menu">
+                    <div id="target">
+                        <div id="deposit-withdraw-target">
+                            <label for="accounts-menu">Account:</label>
+                            <select id="accounts-menu">
                                 <option value="">Select Account</option>
                             </select>
-                        </span>
-                        <img
-                            id="transfer-direction"
-                            src="img/right-arrow.png"
+                        </div>
+
+                        <div id="transfer-target">
+                            <span>
+                                From:
+                                <select id="from-accounts-menu">
+                                    <option value="">Select Account</option>
+                                </select>
+                            </span>
+                            <img
+                                id="transfer-direction"
+                                src="img/right-arrow.png"
+                            />
+                            <span>
+                                To:
+                                <select id="to-accounts-menu">
+                                    <option value="">Select Account</option>
+                                </select>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div id="category">
+                        <div>
+                            Category:
+                            <select id="categories-menu">
+                                <option value="">Select Category</option>
+                            </select>
+                        </div>
+                        <div>
+                            Add new category:
+                            <div class="newCategory">
+                                <input name="new-category-input" type="text" />
+                                <button id="add-new-category-btn" type="button">
+                                    Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="description">
+                        Description
+                        <input
+                            id="description-input"
+                            name="description-input"
+                            type="text"
                         />
-                        <span>
-                            To:
-                            <select id="to-accounts-menu">
-                                <option value="">Select Account</option>
-                            </select>
-                        </span>
                     </div>
-                </div>
 
-                <div id="category">
                     <div>
-                        Category:
-                        <select id="categories-menu">
-                            <option value="">Select Category</option>
-                        </select>
+                        Amount:
+                        <input
+                            id="amount-input"
+                            name="amount-input"
+                            type="text"
+                            pattern="^[1-9][0-9]*$"
+                            title="Please input number"
+                            required
+                        />
                     </div>
-                    <div>
-                        Add new category:
-                        <input name="new-category-input" type="text" />
-                        <button id="add-new-category-btn" type="button">
-                            Add
-                        </button>
-                    </div>
-                </div>
 
-                <div id="description">
-                    Description
-                    <input
-                        id="description-input"
-                        name="description-input"
-                        type="text"
-                    />
-                </div>
-
-                <div>
-                    Amount:
-                    <input
-                        id="amount-input"
-                        name="amount-input"
-                        type="text"
-                        pattern="^[1-9][0-9]*$"
-                        title="Please input number"
-                        required
-                    />
-                </div>
-
-                <button id="add-new-transaction-btn" type="submit">
-                    Add transaction
-                </button>
-            </form>
-
-            <!-- account summary -->
-            <div class="accountSummaryBox">
-                <h2>Account summary</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Account</th>
-                            <th>Balance</th>
-                        </tr>
-                    </thead>
-                    <tbody id="accountAndBalance"></tbody>
-                </table>
+                    <button id="add-new-transaction-btn" type="submit">
+                        Add transaction
+                    </button>
+                </form>
             </div>
 
-            <ul></ul>
-            Filter by account:
-            <select></select>
+            <div class="filiterBox">
+                <label>Filiter by account:</label>
+                <select></select>
+            </div>
             <table>
                 <tr>
                     <th id="id">Id</th>

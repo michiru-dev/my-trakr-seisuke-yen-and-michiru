@@ -1,4 +1,4 @@
-import { updateBalance } from "./Account.js";
+import { addNewAccount, updateBalance } from "./Account.js";
 
 export function showTransactions() {
     // GET transactions from API
@@ -48,6 +48,11 @@ export function updateAccounts(accounts /*Array*/) {
         $("#from-accounts-menu").append(accountOption);
         $("#to-accounts-menu").append(accountOption);
     }
+
+    // Deploy HTML to each of the account selection menu
+    $("#accounts-menu").html(newAccountOptions);
+    $("#from-accounts-menu").html(newAccountOptions);
+    $("#to-accounts-menu").html(newAccountOptions);
 
     // update accounts in filter
 }
