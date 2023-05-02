@@ -1,159 +1,159 @@
 body {
-  background-color: #f7f7f7;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
 }
 
 main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 2rem;
-  margin: 0 7rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2rem;
+    margin: 0 7rem;
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 h1 {
-  margin: 0 0 0 5rem;
+    margin: 0 0 0 5rem;
 }
 
 header form {
-  margin: 1rem 10rem 0 0;
+    margin: 1rem 10rem 0 0;
 }
 
 .summaryAndtransactionDiv {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 #new-transaction {
-  width: 40%;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem 0;
+    width: 40%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem 0;
 }
 
 .addNewAccountText,
 #new-transaction input[type="text"],
 #new-transaction select {
-  /* width: 100%; */
-  padding: 0.5rem;
-  border: none;
-  border-radius: 4px;
-  /* margin-bottom: 1rem; */
+    /* width: 100%; */
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    /* margin-bottom: 1rem; */
 }
 
 #new-transaction select {
-  width: 10rem;
+    width: 10rem;
 }
 
 button {
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
 }
 
 button:hover {
-  background-color: #555;
+    background-color: #555;
 }
 
 .accountSummaryBox {
-  width: 35%;
-  padding: 1rem;
-  /* background-color: #f2f2f2; */
-  border-radius: 4px;
+    width: 35%;
+    padding: 1rem;
+    /* background-color: #f2f2f2; */
+    border-radius: 4px;
 }
 
 .accountSummaryBox h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .accountSummaryBox table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
 }
 
 .accountSummaryBox th,
 .accountSummaryBox td {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
 }
 
 .accountSummaryBox th {
-  text-align: left;
-  background-color: #ddd;
+    text-align: left;
+    background-color: #ddd;
 }
 
 table {
-  width: 100%;
-  margin-top: 2rem;
-  border-collapse: collapse;
+    width: 100%;
+    margin-top: 2rem;
+    border-collapse: collapse;
 }
 
 table th,
 table td {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  text-align: center;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    text-align: center;
 }
 
 table th {
-  background-color: #ddd;
-  text-align: center;
+    background-color: #ddd;
+    text-align: center;
 }
 
 select {
-  width: 100%;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 4px;
-  /* margin-bottom: 1rem; */
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    /* margin-bottom: 1rem; */
 }
 
 option {
-  color: #333;
+    color: #333;
 }
 
 #transaction-options {
-  display: flex;
-  margin-bottom: 1rem;
+    display: flex;
+    margin-bottom: 1rem;
 }
 
 #transaction-options label {
-  margin-right: 1rem;
+    margin-right: 1rem;
 }
 
 #transfer-target {
-  display: none;
-  margin-bottom: 1rem;
+    display: none;
+    margin-bottom: 1rem;
 }
 
 #transfer-direction {
-  height: 100%;
-  width: auto;
+    height: 100%;
+    width: auto;
 }
 
 #category {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  align-items: center;
-  gap: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    align-items: center;
+    gap: 0 1rem;
 }
 .newCategory {
-  display: flex;
+    display: flex;
 }
 
 /* #category div:first-child {
@@ -166,43 +166,43 @@ option {
 } */
 
 #category select {
-  width: 100%;
+    width: 100%;
 }
 
 #deposit-withdraw-target,
 #transfer-target {
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 0 1rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
 }
 
-#description {
-  margin-bottom: 1rem;
-  width: 100%;
+#newDescription {
+    margin-bottom: 1rem;
+    width: 100%;
 }
 
 #description-input {
-  width: 100%;
-  padding: 0.5rem;
-  border: none;
-  border-radius: 4px;
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
 }
 
 #accounts-menu {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .filiterBox {
-  width: 20vw;
-  display: flex;
-  align-items: center;
+    width: 20vw;
+    display: flex;
+    align-items: center;
 }
 
 .filiterBox label {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 
 #add-new-category-btn {
-  margin-left: 0.5rem;
+    margin-left: 0.5rem;
 }
