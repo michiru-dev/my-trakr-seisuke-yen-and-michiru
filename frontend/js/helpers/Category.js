@@ -2,9 +2,6 @@ import { SERVER_URL } from './Common.js'
 const CATEGORY_ENDPOINT = SERVER_URL + "categories"
 
 export function showCategories() {
-    // Even if there are already some categories, delete them to get and show again
-    clearCategories()
-
     // Get categories from the server
     $.ajax({
         url: CATEGORY_ENDPOINT,
@@ -13,9 +10,7 @@ export function showCategories() {
     })
     .done((categories) => {
         // Deploy each category to the pull-down menu
-        for(const category of categories) {
-            deployCategory(category.name)
-        }
+        updateCategories(categories)
     })
 }
 
@@ -39,22 +34,18 @@ export function addNewCategory() {
     })
 }
 
-function clearCategories() {
-    // Delete all the category options except the first element which is "Select Category"
-    $("#categories-menu").children().each((index, categoryOption) => {
-        if($(categoryOption).val() !== "") {
-            categoryOption.remove()
-        }
-    })
-}
+function updateCategories(categories) {
+    // Create HTML of new category options
+    let newCategoryOptions = `<option value="">Select Category</option>`
+    for(const category of categories) {
+        const newCategoryOption = `
+            <option>${category.name}</option>
+        `
+        newCategoryOptions += newCategoryOption
+    }
 
-function deployCategory(category) {
-    // Add an option to the pull-down menu in the New Transfer section
-    $("#categories-menu").append(`
-        <option value=${category}>${category}</option>
-    `)
-
-    // Maybe deploy to the filter here?
+    // Deploy HTML to each of the account selection menu
+    $("#categories-menu").html(newCategoryOptions)
 } 
 
 
