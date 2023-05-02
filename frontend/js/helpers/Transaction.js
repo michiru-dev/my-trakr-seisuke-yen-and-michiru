@@ -123,7 +123,6 @@ export function updateAccountSelection() {
         } else {
             imagePath = `img/${$(inputElement).next().prop("for")}-off.png`
         }
-        console.log(imagePath)
         $(inputElement).prev().prop("src", imagePath)
     })
 }
