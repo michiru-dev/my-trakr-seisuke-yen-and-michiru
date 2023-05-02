@@ -31,6 +31,7 @@ export function updateBalance() {
   $.get("http://localhost:3000/accounts")
     .done((accounts) => {
       const accountAndBalance = $("#accountAndBalance");
+      accountAndBalance.html("")
       $.each(accounts, (index, account) => {
         let balance = 0;
         const row = $("<tr>");
