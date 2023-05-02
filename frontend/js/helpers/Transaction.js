@@ -35,8 +35,18 @@ export function showTransactions() {
 // updateBalance()
 
 export function addNewTransaction() {
-    // updateBalance()
+    $.ajax({
+        method: "post",
+        url: "http://localhost:3000/transactions",
+        contentType: "application/json",
+        data: JSON.stringify,
+    }).done((data) => {
+        console.log("data", data);
+    });
+    showTransactions();
 }
+
+// updateBalance()
 
 export function updateAccounts(accounts /*Array*/) {
     // update pull-down menu
@@ -112,15 +122,19 @@ export function handleNewTransaction() {
     clearNewTransactionInput();
 
     // Call Yen's function
-    addNewTransaction(
-        transactionType,
-        accountName,
-        fromAccountName,
-        toAccountName,
-        categoryName,
-        description,
-        amount
-    );
+    addNewTransaction({
+        newTransaction: {
+            // don't need to clairfy the name cause it's inside the function //
+            // put in different order//
+            // type: transactionType.val(),
+            accountId: 1,
+            accountIdFrom: fromAccountName.val(),
+            accountIdTo: toAccountName.val(),
+            categoryId: categoryName.val(),
+            description: description.val(),
+            amount: amount.val(),
+        },
+    });
     // receive the data and post to API //
 }
 
