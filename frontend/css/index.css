@@ -212,19 +212,20 @@ option {
   position: relative;
 }
 
-#transaction-options label {
+input[name=transaction-option] + label {
   width: 6rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   border: 2px solid rgb(40, 122, 216);
   color: rgb(40, 122, 216);
   border-radius: .5rem;
-  padding: .5rem 1rem;
+  padding: .5rem 0rem .5rem 4rem;
   margin: 0 1rem 0 0;
+  cursor: pointer;
 }
 
-input[type=radio] {
+input[name=transaction-option] {
   width: 1rem;
   height: 1rem;
   /* opacity: 0; */
@@ -236,8 +237,34 @@ input[type=radio] {
   display: none;
 }
 
-input[type=radio]:checked + label#label-color {
+input[name=transaction-option]:checked + label {
   background-color: rgb(40, 122, 216);
   color: white;
+}
+
+/* images that have input[] right after themselfves */
+#deposit-image, #withdraw-image, #transfer-image {
+  position: absolute;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #f7f7f7;
+  pointer-events: none;
+}
+
+#deposit-image {
+  left: 1.2rem;
+}
+
+#withdraw-image {
+  left: 12.4rem;
+}
+
+#transfer-image {
+  left: 23.6rem;
 }
 

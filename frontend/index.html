@@ -42,6 +42,7 @@
         <form id="new-transaction">
           <h2>New Transaction</h2>
           <div id="transaction-options">
+            <img id="deposit-image" src="img/deposit.png">
             <input
               type="radio"
               class="select-deposit"
@@ -50,7 +51,9 @@
               value="Deposit"
               checked
             />
-            <label id="label-color" for="deposit">Deposit</label>
+            <label for="deposit">Deposit</label>
+
+            <img id="withdraw-image" src="img/withdraw.png">
             <input
               type="radio"
               class="select-withdraw"
@@ -58,7 +61,9 @@
               name="transaction-option"
               value="Withdraw"
             />
-            <label id="label-color" for="withdraw">Withdraw</label>
+            <label for="withdraw">Withdraw</label>
+
+            <img id="transfer-image" src="img/transfer.png">
             <input
               type="radio"
               class="select-transfer"
@@ -66,7 +71,7 @@
               name="transaction-option"
               value="Transfer"
             />
-            <label id="label-color"for="transfer">Transfer</label> 
+            <label for="transfer">Transfer</label> 
           </div>
           <div id="target">
             <div id="deposit-withdraw-target">
