@@ -229,17 +229,17 @@ option {
 }
 
 input[name=transaction-option] + label {
-  width: 6rem;
+  width: 5.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   border: 2px solid rgb(40, 122, 216);
   color: rgb(40, 122, 216);
   border-radius: .5rem;
-  padding: .5rem 0rem .5rem 4rem;
+  padding: .5rem 0rem .5rem 3rem;
   margin: 0 1rem 0 0;
   cursor: pointer;
-  letter-spacing: .08rem;
+  letter-spacing: .06rem;
 }
 
 input[name=transaction-option] {
@@ -264,8 +264,8 @@ input[name=transaction-option]:checked + label {
 /* images that have input[] right after themselfves */
 #deposit-image, #withdraw-image, #transfer-image {
   position: absolute;
-  width: 1.8rem;
-  height: 1.8rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
@@ -274,23 +274,25 @@ input[name=transaction-option]:checked + label {
   background-color: #f7f7f7;
   pointer-events: none;
   outline: none;
+  box-sizing: border-box;
+  border: 2px solid #f7f7f7;
 }
 
 #deposit-image:has(+input[name=transaction-option]:checked),
 #withdraw-image:has(+input[name=transaction-option]:checked) ,
 #transfer-image:has(+input[name=transaction-option]:checked) {
-  outline: 2px solid white;
+  border: 2px solid white;
   background-color: #0073c5;
 }
 
 #deposit-image {
-  left: 1.2rem;
+  left: .8rem;
 }
 
 #withdraw-image {
-  left: 12.4rem;
+  left: 10.5rem;
 }
 
 #transfer-image {
-  left: 23.6rem;
+  left: 20.2rem;
 }
