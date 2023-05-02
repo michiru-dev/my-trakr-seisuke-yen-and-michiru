@@ -1,8 +1,9 @@
 body {
-    background-color: #f7f7f7;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #333;
+  background-color: #f7f7f7;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  box-sizing: border-box;
 }
 
 main {
@@ -24,6 +25,22 @@ h1 {
 
 header form {
     margin: 1rem 10rem 0 0;
+}
+
+button, input {
+  font-size: 16px;
+}
+
+input, select {
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 5px #0073c5;
+  transition-property: box-shadow;
+  transition-duration: .2s;
 }
 
 .summaryAndtransactionDiv {
@@ -136,8 +153,7 @@ option {
 }
 
 #transfer-target {
-    display: none;
-    margin-bottom: 1rem;
+  display: none;
 }
 
 #transfer-direction {
@@ -173,10 +189,11 @@ option {
 
 #deposit-withdraw-target,
 #transfer-target {
-    height: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 0 1rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0 1rem;
+  margin-bottom: 1rem;
 }
 
 #newDescription {
@@ -207,6 +224,80 @@ option {
 
 #add-new-category-btn {
     margin-left: 0.5rem;
+}
+
+
+#transaction-options {
+  position: relative;
+}
+
+input[name=transaction-option] + label {
+  width: 5.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 2px solid #606365;
+  color: #606365;
+  border-radius: .5rem;
+  padding: .5rem 0rem .5rem 3rem;
+  margin: 0 1rem 0 0;
+  cursor: pointer;
+  letter-spacing: .06rem;
+}
+
+input[name=transaction-option] {
+  width: 1rem;
+  height: 1rem;
+  /* opacity: 0; */
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events : none;
+  display: none;
+}
+
+input[name=transaction-option]:checked + label {
+  background-color: #606365;
+  color: white;
+  transition-property: background-color, color;
+  transition-duration: .2s;
+}
+
+/* images that have input[] right after themselfves */
+#deposit-image, #withdraw-image, #transfer-image {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: #f7f7f7;
+  pointer-events: none;
+  outline: none;
+  box-sizing: border-box;
+  border: 2px solid #f7f7f7;
+}
+
+#deposit-image:has(+input[name=transaction-option]:checked),
+#withdraw-image:has(+input[name=transaction-option]:checked) ,
+#transfer-image:has(+input[name=transaction-option]:checked) {
+  border: 2px solid white;
+  background-color: #606365;
+}
+
+#deposit-image {
+  left: .8rem;
+}
+
+#withdraw-image {
+  left: 10.5rem;
+}
+
+#transfer-image {
+  left: 20.2rem;
 }
 
 .add-animation-parent {
@@ -266,4 +357,5 @@ option {
   margin: 0;
   padding: 0;
   font-size: .8rem;
+
 }
