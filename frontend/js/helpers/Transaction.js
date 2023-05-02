@@ -1,4 +1,4 @@
-import { updateBalance } from "./Account.js";
+import { addNewAccount, updateBalance } from "./Account.js";
 
 export function showTransactions() {
     // GET transations from API
@@ -16,15 +16,20 @@ export function addNewTransaction() {
 }
 
 export function updateAccounts(accounts/*Array*/) {
-    // update pull-down menu
+
+    // Create HTML of new account options
+    let newAccountOptions = `<option>Select Account</option>`
     for(const account of accounts) {
-        const accountOption = `
+        const newAccountOption = `
             <option>${account.username}</option>
         `
-        $("#accounts-menu").append(accountOption)
-        $("#from-accounts-menu").append(accountOption)
-        $("#to-accounts-menu").append(accountOption)
+        newAccountOptions += newAccountOption
     }
+
+    // Deploy HTML to each of the account selection menu
+    $("#accounts-menu").html(newAccountOptions)
+    $("#from-accounts-menu").html(newAccountOptions)
+    $("#to-accounts-menu").html(newAccountOptions)
 
     // update accounts in filter
 }
