@@ -27,6 +27,10 @@ header form {
   margin: 1rem 10rem 0 0;
 }
 
+button, input {
+  font-size: 16px;
+}
+
 .summaryAndtransactionDiv {
   width: 100%;
   display: flex;
@@ -223,6 +227,7 @@ input[name=transaction-option] + label {
   padding: .5rem 0rem .5rem 4rem;
   margin: 0 1rem 0 0;
   cursor: pointer;
+  letter-spacing: .08rem;
 }
 
 input[name=transaction-option] {
@@ -267,4 +272,3 @@ input[name=transaction-option]:checked + label {
 #transfer-image {
   left: 23.6rem;
 }
-
