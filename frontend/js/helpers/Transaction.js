@@ -128,11 +128,11 @@ export function handleNewTransaction() {
             // put in different order//
             // type: transactionType.val(),
             accountId: 1,
-            accountIdFrom: fromAccountName.val(),
-            accountIdTo: toAccountName.val(),
-            categoryId: categoryName.val(),
-            description: description.val(),
-            amount: amount.val(),
+            accountIdFrom: fromAccountName,
+            accountIdTo: toAccountName,
+            categoryId: categoryName,
+            description: description,
+            amount: amount,
         },
     });
     // receive the data and post to API //
