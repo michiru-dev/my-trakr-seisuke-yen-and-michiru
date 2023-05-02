@@ -56,7 +56,7 @@ function notifyNewCategoryAdded() {
 
     // Remove the animation so that this animation can work next time
     setTimeout(() => {
-        $("#new-transaction-category").children(".add-animation").css("animation-name", "")
+        $("#categories-menu").siblings(".add-animation").css("animation-name", "")
     }, 4000)
 }
 
