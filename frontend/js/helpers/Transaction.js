@@ -18,7 +18,7 @@ export function addNewTransaction() {
 export function updateAccounts(accounts/*Array*/) {
 
     // Create HTML of new account options
-    let newAccountOptions = `<option>Select Account</option>`
+    let newAccountOptions = `<option value="">Select Account</option>`
     for(const account of accounts) {
         const newAccountOption = `
             <option>${account.username}</option>
