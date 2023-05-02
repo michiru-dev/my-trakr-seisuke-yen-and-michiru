@@ -3,6 +3,7 @@ body {
   font-family: Arial, sans-serif;
   font-size: 16px;
   color: #333;
+  box-sizing: border-box;
 }
 
 main {
@@ -137,7 +138,6 @@ option {
 
 #transfer-target {
   display: none;
-  margin-bottom: 1rem;
 }
 
 #transfer-direction {
@@ -175,6 +175,7 @@ option {
   display: flex;
   align-items: center;
   gap: 0 1rem;
+  margin-bottom: 1rem;
 }
 
 #description {
