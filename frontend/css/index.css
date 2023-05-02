@@ -207,3 +207,37 @@ option {
 #add-new-category-btn {
   margin-left: 0.5rem;
 }
+
+#transaction-options {
+  position: relative;
+}
+
+#transaction-options label {
+  width: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: 2px solid rgb(40, 122, 216);
+  color: rgb(40, 122, 216);
+  border-radius: .5rem;
+  padding: .5rem 1rem;
+  margin: 0 1rem 0 0;
+}
+
+input[type=radio] {
+  width: 1rem;
+  height: 1rem;
+  /* opacity: 0; */
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events : none;
+  display: none;
+}
+
+input[type=radio]:checked + label#label-color {
+  background-color: rgb(40, 122, 216);
+  color: white;
+}
+
