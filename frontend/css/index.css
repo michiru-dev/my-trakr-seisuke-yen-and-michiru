@@ -145,11 +145,11 @@ option {
   width: auto;
 }
 
-#category {
+#new-transaction-category {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  align-items: center;
+  align-items: flex-end;
   gap: 0 1rem;
 }
 .newCategory {
@@ -205,4 +205,63 @@ option {
 
 #add-new-category-btn {
   margin-left: 0.5rem;
+}
+
+.add-animation-parent {
+  position: relative;
+}
+
+.add-animation {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -5rem;
+  opacity: 0;
+  /* animation-name: notify; */ /* Added when something new is added */
+  animation-duration: 4s;
+  transition-property: opacity;
+  pointer-events: none;
+}
+
+@keyframes notify {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.balloon {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #dfffd8;
+}
+
+.balloon:before {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -15px;
+  border: 15px solid transparent;
+  border-top: 15px solid #dfffd8;
+}
+
+.balloon p {
+  margin: 0;
+  padding: 0;
+  font-size: .8rem;
 }

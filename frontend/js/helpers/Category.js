@@ -27,10 +27,12 @@ export function addNewCategory() {
         showCategories()
 
         // Show animation that indicates a new category has been added
-        gsap.to("#categories-menu", { scale: 1.2, duration: .08, repeat: 1, yoyo: true })
+        // gsap.to("#categories-menu", { scale: 1.2, duration: .08, repeat: 1, yoyo: true })
 
         // Clear the category text input by the user
         $("input[name=new-category-input]").val("")
+
+        notifyNewCategoryAdded()
     })
 }
 
@@ -48,5 +50,14 @@ function updateCategories(categories) {
     $("#categories-menu").html(newCategoryOptions)
 } 
 
+function notifyNewCategoryAdded() {
+    // Add animation
+    $("#categories-menu").siblings(".add-animation").css("animation-name", "notify")
+
+    // Remove the animation so that this animation can work next time
+    setTimeout(() => {
+        $("#new-transaction-category").children(".add-animation").css("animation-name", "")
+    }, 4000)
+}
 
 
