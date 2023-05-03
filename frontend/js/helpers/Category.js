@@ -41,7 +41,7 @@ function updateCategories(categories) {
     let newCategoryOptions = `<option value="">Select Category</option>`
     for(const category of categories) {
         const newCategoryOption = `
-            <option>${category.name}</option>
+            <option id=${category.id}>${category.name}</option>
         `
         newCategoryOptions += newCategoryOption
     }

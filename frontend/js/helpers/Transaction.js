@@ -39,16 +39,15 @@ export function addNewTransaction() {
 }
 
 export function updateAccounts(accounts /*Array*/) {
-    const newAccountOptions = `<option value="">Select Account</option>`
+
+    let newAccountOptions = `<option value="">Select Account</option>`
 
     // update pull-down menu
     for (const account of accounts) {
         const accountOption = `
-            <option>${account.username}</option>
-        `;
-        $("#accounts-menu").append(accountOption);
-        $("#from-accounts-menu").append(accountOption);
-        $("#to-accounts-menu").append(accountOption);
+            <option id=${account.id}>${account.username}</option>
+        `
+        newAccountOptions += accountOption
     }
 
     // Deploy HTML to each of the account selection menu
@@ -64,39 +63,39 @@ export function handleNewTransaction() {
     // Get parameters from elements
     let transactionType = $("input[name=transaction-option]:checked").val();
 
-    let accountName = "";
+    let accountId = null
     $("#accounts-menu")
         .children()
         .each((index, account) => {
             if ($(account).prop("selected")) {
-                accountName = $(account).val();
+                accountId = $(account).prop("id");
             }
         });
 
-    let fromAccountName = "";
+    let fromAccountId = null
     $("#from-accounts-menu")
         .children()
         .each((index, account) => {
             if ($(account).prop("selected")) {
-                fromAccountName = $(account).val();
+                fromAccountId = $(account).prop("id");
             }
         });
 
-    let toAccountName = "";
+    let toAccountId = null
     $("#to-accounts-menu")
         .children()
         .each((index, account) => {
             if ($(account).prop("selected")) {
-                toAccountName = $(account).val();
+                toAccountId = $(account).prop("id");
             }
         });
 
-    let categoryName = "";
+    let categoryId = null;
     $("#categories-menu")
         .children()
         .each((index, category) => {
             if ($(category).prop("selected")) {
-                categoryName = $(category).val();
+                categoryId = $(category).prop("id");
             }
         });
 
@@ -104,10 +103,10 @@ export function handleNewTransaction() {
     let amount = $("input[name=amount-input]").val();
 
     console.log("TransactionType:", transactionType);
-    console.log("Account:", accountName);
-    console.log("From Account:", fromAccountName);
-    console.log("To Account:", toAccountName);
-    console.log("Category:", categoryName);
+    console.log("Account:", accountId);
+    console.log("From Account:", fromAccountId);
+    console.log("To Account:", toAccountId);
+    console.log("Category:", categoryId);
     console.log("Description", description);
     console.log("Amount", amount);
 
@@ -116,10 +115,10 @@ export function handleNewTransaction() {
     // Call Yen's function
     addNewTransaction(
         transactionType,
-        accountName,
-        fromAccountName,
-        toAccountName,
-        categoryName,
+        accountId,
+        fromAccountId,
+        toAccountId,
+        categoryId,
         description,
         amount
     );
