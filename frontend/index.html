@@ -19,7 +19,7 @@
         <header>
             <h1>ExpenseTracker</h1>
             <form>
-                New Account:
+                New Account
                 <input class="addNewAccountText" type="text" />
                 <button id="addNewAccount">Add</button>
             </form>
@@ -42,32 +42,40 @@
                 <form id="new-transaction">
                     <h2>New Transaction</h2>
                     <div id="transaction-options">
-                        <label
-                            ><input
-                                type="radio"
-                                name="transaction-option"
-                                value="Deposit"
-                                checked
-                            />Deposit</label
-                        >
-                        <label
-                            ><input
-                                type="radio"
-                                name="transaction-option"
-                                value="Withdraw"
-                            />Withdraw</label
-                        >
-                        <label
-                            ><input
-                                type="radio"
-                                name="transaction-option"
-                                value="Transfer"
-                            />Transfer</label
-                        >
+                        <img id="deposit-image" src="img/deposit-on.png">
+                        <input
+                          type="radio"
+                          class="select-deposit"
+                          name="transaction-option"
+                          id="deposit"
+                          value="Deposit"
+                          checked
+                        />
+                        <label for="deposit">Deposit</label>
+            
+                        <img id="withdraw-image" src="img/withdraw-off.png">
+                        <input
+                          type="radio"
+                          class="select-withdraw"
+                          id="withdraw"
+                          name="transaction-option"
+                          value="Withdraw"
+                        />
+                        <label for="withdraw">Withdraw</label>
+            
+                        <img id="transfer-image" src="img/transfer-off.png">
+                        <input
+                          type="radio"
+                          class="select-transfer"
+                          id="transfer"
+                          name="transaction-option"
+                          value="Transfer"
+                        />
+                        <label for="transfer">Transfer</label> 
                     </div>
                     <div id="target">
                         <div id="deposit-withdraw-target">
-                            <label for="accounts-menu">Account:</label>
+                            <label for="accounts-menu">Account</label>
                             <select id="accounts-menu">
                                 <option value="">Select Account</option>
                             </select>
@@ -75,17 +83,17 @@
 
                         <div id="transfer-target">
                             <span>
-                                From:
+                                From
                                 <select id="from-accounts-menu">
                                     <option value="">Select Account</option>
                                 </select>
                             </span>
                             <img
                                 id="transfer-direction"
-                                src="img/right-arrow.png"
+                                src="img/transaction-direction.png"
                             />
                             <span>
-                                To:
+                                To
                                 <select id="to-accounts-menu">
                                     <option value="">Select Account</option>
                                 </select>
@@ -93,17 +101,16 @@
                         </div>
                     </div>
 
-                    <div id="category">
-                        <div>
-                            Category:
+                    <div id="new-transaction-category">
+                        <div class="balloon-animation-parent">
+                            Category
                             <select id="categories-menu">
                                 <option value="">Select Category</option>
                             </select>
                         </div>
                         <div>
-                            Add new category:
                             <div class="newCategory">
-                                <input name="new-category-input" type="text" />
+                                <input name="new-category-input" type="text" placeholder="New category"/>
                                 <button id="add-new-category-btn" type="button">
                                     Add
                                 </button>
@@ -111,7 +118,7 @@
                         </div>
                     </div>
 
-                    <div id="description">
+                    <div id="newDescription">
                         Description
                         <input
                             id="description-input"
@@ -121,7 +128,7 @@
                     </div>
 
                     <div>
-                        Amount:
+                        Amount
                         <input
                             id="amount-input"
                             name="amount-input"
@@ -139,12 +146,12 @@
             </div>
 
             <div class="filiterBox">
-                <label>Filiter by account:</label>
+                <label>Filiter by account</label>
                 <select></select>
             </div>
             <table>
                 <tr>
-                    <th id="id">Id</th>
+                    <th id="idTransaction">Id</th>
                     <th id="username">Username</th>
                     <th id="transaction">Transaction Type</th>
                     <th id="category">Category</th>

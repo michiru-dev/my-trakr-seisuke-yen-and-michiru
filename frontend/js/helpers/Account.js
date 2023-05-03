@@ -1,11 +1,5 @@
 import { updateAccounts } from "./Transaction.js";
 
-// GET accounts that already exist
-// Show them to the list
-export function showAccounts() {
-  updateBalance();
-}
-//これなしでもいける？
 
 // POST a new account
 // Show them to the list
@@ -15,25 +9,28 @@ export function addNewAccount() {
     newAccount: accountName,
   })
     .done(() => {
-      showAccounts();
-      //ここもupdatebalanceでいける？
       $(".addNewAccountText").val("");
+      updateBalance().then(notifyNewAccountAdded);
     })
     .fail((err) => console.log(err));
 }
 
+// GET accounts that already exist
 // Calclate balance
 // Show them to the list
-
 //⚠️parameter expecting: EACH user with id, username & transactions
 //not sure if this works with transactions URL
 export function updateBalance() {
-  $.get("http://localhost:3000/accounts")
+
+  // Return promise for the following process after this function
+  return new Promise((resolve, reject) => {
+    $.get("http://localhost:3000/accounts")
     .done((accounts) => {
       const accountAndBalance = $("#accountAndBalance");
+      accountAndBalance.html("")
       $.each(accounts, (index, account) => {
         let balance = 0;
-        const row = $("<tr>");
+        const row = $(`<tr class="balloon-animation-parent">`);
         const accountName = $("<td>").text(account.username);
         $.each(account.transactions, (index, transaction) => {
           console.log(transaction);
@@ -62,6 +59,33 @@ export function updateBalance() {
         accountAndBalance.append(row);
       });
       updateAccounts(accounts);
+      resolve();
     })
     .fail((err) => console.log(err));
+  })
+}
+
+
+function notifyNewAccountAdded() {
+  // Get the final row
+  // because the animation should be displayed only for the new account that has just been added
+  const accountAddedLast = $("#accountAndBalance").children().last()
+
+  // Create an element for the animation
+  const message = "A new account has been added."
+  const animationElement = $(`
+      <div class="balloon-left-animation">
+          <div class="balloon-left">
+              <p>${message}</p>
+          </div>
+      </div>
+  `)
+
+  // Add the animation element to the final row
+  accountAddedLast.append(animationElement)
+
+  // Remove the animation so that this animation can work next time
+  setTimeout(() => {
+      animationElement.remove()
+  }, 4000)
 }

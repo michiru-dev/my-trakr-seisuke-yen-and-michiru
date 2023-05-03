@@ -49,14 +49,14 @@ export function addNewTransaction() {
 // updateBalance()
 
 export function updateAccounts(accounts /*Array*/) {
+    let newAccountOptions = `<option value="">Select Account</option>`;
+
     // update pull-down menu
     for (const account of accounts) {
         const accountOption = `
-            <option>${account.username}</option>
+            <option id=${account.id}>${account.username}</option>
         `;
-        $("#accounts-menu").append(accountOption);
-        $("#from-accounts-menu").append(accountOption);
-        $("#to-accounts-menu").append(accountOption);
+        newAccountOptions += accountOption;
     }
 
     // Deploy HTML to each of the account selection menu
@@ -72,39 +72,39 @@ export function handleNewTransaction() {
     // Get parameters from elements
     let transactionType = $("input[name=transaction-option]:checked").val();
 
-    let accountName = "";
+    let accountId = null;
     $("#accounts-menu")
         .children()
         .each((index, account) => {
             if ($(account).prop("selected")) {
-                accountName = $(account).val();
+                accountId = $(account).prop("id");
             }
         });
 
-    let fromAccountName = "";
+    let fromAccountId = null;
     $("#from-accounts-menu")
         .children()
         .each((index, account) => {
             if ($(account).prop("selected")) {
-                fromAccountName = $(account).val();
+                fromAccountId = $(account).prop("id");
             }
         });
 
-    let toAccountName = "";
+    let toAccountId = null;
     $("#to-accounts-menu")
         .children()
         .each((index, account) => {
             if ($(account).prop("selected")) {
-                toAccountName = $(account).val();
+                toAccountId = $(account).prop("id");
             }
         });
 
-    let categoryName = "";
+    let categoryId = null;
     $("#categories-menu")
         .children()
         .each((index, category) => {
             if ($(category).prop("selected")) {
-                categoryName = $(category).val();
+                categoryId = $(category).prop("id");
             }
         });
 
@@ -112,10 +112,10 @@ export function handleNewTransaction() {
     let amount = $("input[name=amount-input]").val();
 
     console.log("TransactionType:", transactionType);
-    console.log("Account:", accountName);
-    console.log("From Account:", fromAccountName);
-    console.log("To Account:", toAccountName);
-    console.log("Category:", categoryName);
+    console.log("Account:", accountId);
+    console.log("From Account:", fromAccountId);
+    console.log("To Account:", toAccountId);
+    console.log("Category:", categoryId);
     console.log("Description", description);
     console.log("Amount", amount);
 
@@ -127,9 +127,9 @@ export function handleNewTransaction() {
             // don't need to clairfy the name cause it's inside the function //
             // put in different order//
             // type: transactionType.val(),
-            accountId: 1,
-            accountIdFrom: fromAccountName,
-            accountIdTo: toAccountName,
+            accountId: accountId,
+            accountIdFrom: fromAccountId,
+            accountIdTo: toAccountId,
             categoryId: categoryName,
             description: description,
             amount: amount,
@@ -175,6 +175,18 @@ export function updateAccountSelection() {
         // Make the input field for Deposit and Withdraw not required
         $("#accounts-menu").prop("required", false);
     }
+
+    $("#transaction-options")
+        .children("input")
+        .each((index, inputElement) => {
+            let imagePath = "";
+            if ($(inputElement).prop("checked")) {
+                imagePath = `img/${$(inputElement).next().prop("for")}-on.png`;
+            } else {
+                imagePath = `img/${$(inputElement).next().prop("for")}-off.png`;
+            }
+            $(inputElement).prev().prop("src", imagePath);
+        });
 }
 
 function clearNewTransactionInput() {

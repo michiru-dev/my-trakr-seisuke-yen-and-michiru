@@ -4,12 +4,12 @@ import {
     updateAccounts,
     updateAccountSelection,
 } from "./helpers/Transaction.js";
-import { showAccounts } from "./helpers/Account.js";
+import { updateBalance } from "./helpers/Account.js";
 import { showTransactions } from "./helpers/Transaction.js";
 import { addNewAccount } from "./helpers/Account.js";
 
 $(() => {
-    showAccounts();
+    updateBalance();
     showTransactions();
     showCategories();
     updateAccountSelection();
@@ -24,17 +24,6 @@ $(() => {
     $("#transaction-options").on("change", () => {
         updateAccountSelection();
     });
-
-    // This is a temporary code
-    // Should be deleted after Michiru's calling from Account.js is added
-    // $.ajax({
-    //   url: "http://localhost:3000/accounts",
-    //   type: 'get',
-    //   dataType:'json',
-    // }).done((accounts) => {
-    //   updateAccounts(accounts)
-    // })
-
     $("#addNewAccount").on("click", (event) => {
         event.preventDefault();
         addNewAccount();

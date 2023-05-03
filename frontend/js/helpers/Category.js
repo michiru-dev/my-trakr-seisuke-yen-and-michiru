@@ -27,10 +27,12 @@ export function addNewCategory() {
         showCategories()
 
         // Show animation that indicates a new category has been added
-        gsap.to("#categories-menu", { scale: 1.2, duration: .08, repeat: 1, yoyo: true })
+        // gsap.to("#categories-menu", { scale: 1.2, duration: .08, repeat: 1, yoyo: true })
 
         // Clear the category text input by the user
         $("input[name=new-category-input]").val("")
+
+        notifyNewCategoryAdded()
     })
 }
 
@@ -39,7 +41,7 @@ function updateCategories(categories) {
     let newCategoryOptions = `<option value="">Select Category</option>`
     for(const category of categories) {
         const newCategoryOption = `
-            <option>${category.name}</option>
+            <option id=${category.id}>${category.name}</option>
         `
         newCategoryOptions += newCategoryOption
     }
@@ -48,5 +50,24 @@ function updateCategories(categories) {
     $("#categories-menu").html(newCategoryOptions)
 } 
 
+function notifyNewCategoryAdded() {
+    // Add animation
+    const message = "A new category has been added."
+
+    const animationElement = $(`
+        <div class="balloon-down-animation">
+            <div class="balloon-down">
+                <p>${message}</p>
+            </div>
+        </div>
+    `)
+
+    $("#categories-menu").after(animationElement)
+
+    // Remove the animation so that this animation can work next time
+    setTimeout(() => {
+        animationElement.remove()
+    }, 4000)
+}
 
 
