@@ -323,7 +323,8 @@ input[name=transaction-option]:checked + label {
 
 .balloon-down-animation {
   left: 65%;
-  top: -2rem;
+  top: .5rem;
+  transform: translate(-50%, -100%);
 }
 
 .balloon-left-animation {

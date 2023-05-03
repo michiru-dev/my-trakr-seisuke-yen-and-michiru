@@ -4,12 +4,12 @@ import {
   updateAccounts,
   updateAccountSelection,
 } from "./helpers/Transaction.js";
-import { showAccounts } from "./helpers/Account.js";
+import { updateBalance } from "./helpers/Account.js";
 import { showTransactions } from "./helpers/Transaction.js";
 import { addNewAccount } from "./helpers/Account.js";
 
 $(() => {
-  showAccounts();
+  updateBalance();
   showTransactions();
   showCategories();
   updateAccountSelection();
