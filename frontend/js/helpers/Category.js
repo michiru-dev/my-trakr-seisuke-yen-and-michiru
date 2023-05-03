@@ -41,7 +41,7 @@ function updateCategories(categories) {
     let newCategoryOptions = `<option value="">Select Category</option>`
     for(const category of categories) {
         const newCategoryOption = `
-            <option>${category.name}</option>
+            <option id=${category.id}>${category.name}</option>
         `
         newCategoryOptions += newCategoryOption
     }
@@ -52,11 +52,21 @@ function updateCategories(categories) {
 
 function notifyNewCategoryAdded() {
     // Add animation
-    $("#categories-menu").siblings(".add-animation").css("animation-name", "notify")
+    const message = "A new category has been added."
+
+    const animationElement = $(`
+        <div class="balloon-down-animation">
+            <div class="balloon-down">
+                <p>${message}</p>
+            </div>
+        </div>
+    `)
+
+    $("#categories-menu").after(animationElement)
 
     // Remove the animation so that this animation can work next time
     setTimeout(() => {
-        $("#categories-menu").siblings(".add-animation").css("animation-name", "")
+        animationElement.remove()
     }, 4000)
 }
 
