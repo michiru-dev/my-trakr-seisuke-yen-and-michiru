@@ -300,17 +300,17 @@ input[name=transaction-option]:checked + label {
   left: 20.2rem;
 }
 
-.add-animation-parent {
+.balloon-animation-parent {
   position: relative;
 }
 
-.add-animation {
+.balloon-animation {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   top: -5rem;
   opacity: 0;
-  /* animation-name: notify; */ /* Added when something new is added */
+  animation-name: notify;
   animation-duration: 4s;
   transition-property: opacity;
   pointer-events: none;
