@@ -267,8 +267,8 @@ input[name=transaction-option]:checked + label {
 /* images that have input[] right after themselfves */
 #deposit-image, #withdraw-image, #transfer-image {
   position: absolute;
-  width: 2rem;
-  height: 2rem;
+  width: 1.7rem;
+  height: 1.7rem;
   border-radius: 50%;
   top: 50%;
   transform: translateY(-50%);
