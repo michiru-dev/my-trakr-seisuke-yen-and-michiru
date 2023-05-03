@@ -1,4 +1,4 @@
-import { SERVER_URL, showBaloonAnimation } from './Common.js'
+import { SERVER_URL } from './Common.js'
 const CATEGORY_ENDPOINT = SERVER_URL + "categories"
 
 export function showCategories() {
@@ -52,7 +52,22 @@ function updateCategories(categories) {
 
 function notifyNewCategoryAdded() {
     // Add animation
-    showBaloonAnimation($("#categories-menu").parent(), "A new category has been added.")
+    const message = "A new category has been added."
+
+    const animationElement = $(`
+        <div class="balloon-down-animation">
+            <div class="balloon-down">
+                <p>${message}</p>
+            </div>
+        </div>
+    `)
+
+    $("#categories-menu").after(animationElement)
+
+    // Remove the animation so that this animation can work next time
+    setTimeout(() => {
+        animationElement.remove()
+    }, 4000)
 }
 
 

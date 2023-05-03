@@ -1,4 +1,3 @@
-import { showBaloonAnimation } from './Common.js'
 import { updateAccounts } from "./Transaction.js";
 
 // GET accounts that already exist
@@ -64,10 +63,31 @@ export function updateBalance() {
         accountAndBalance.append(row);
 
         if(index === accounts.length - 1) {
-          showBaloonAnimation(row, "A new account has been added.")
+          notifyNewAccountAdded(row)
         }
       });
       updateAccounts(accounts);
     })
     .fail((err) => console.log(err));
+}
+
+
+function notifyNewAccountAdded(row) {
+  // Add animation
+  const message = "A new account has been added."
+
+  const animationElement = $(`
+      <div class="balloon-left-animation">
+          <div class="balloon-left">
+              <p>${message}</p>
+          </div>
+      </div>
+  `)
+
+  row.append(animationElement)
+
+  // Remove the animation so that this animation can work next time
+  setTimeout(() => {
+      animationElement.remove()
+  }, 4000)
 }
