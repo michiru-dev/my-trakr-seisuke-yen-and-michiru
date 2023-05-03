@@ -1,3 +1,4 @@
+import { showBaloonAnimation } from './Common.js'
 import { updateAccounts } from "./Transaction.js";
 
 // GET accounts that already exist
@@ -34,7 +35,7 @@ export function updateBalance() {
       accountAndBalance.html("")
       $.each(accounts, (index, account) => {
         let balance = 0;
-        const row = $("<tr>");
+        const row = $(`<tr class="balloon-animation-parent">`);
         const accountName = $("<td>").text(account.username);
         $.each(account.transactions, (index, transaction) => {
           console.log(transaction);
@@ -61,6 +62,10 @@ export function updateBalance() {
         const accountBalance = $("<td>").text(balance);
         row.append(accountName, accountBalance);
         accountAndBalance.append(row);
+
+        if(index === accounts.length - 1) {
+          showBaloonAnimation(row, "A new account has been added.")
+        }
       });
       updateAccounts(accounts);
     })
