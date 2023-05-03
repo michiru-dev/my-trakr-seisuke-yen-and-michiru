@@ -34,16 +34,24 @@ export function showTransactions() {
 
 // updateBalance()
 
-export function addNewTransaction() {
+// if the transaction is transfer, accountIdFrom / To will be used
+
+export function addNewTransaction(newTransactionObject) {
+    if (newTransactionObject.newTransaction.type !== "Transfer") {
+        newTransactionObject.newTransaction.accountIdFrom = null;
+        newTransactionObject.newTransaction.accountIdTo = null;
+    }
+    console.log("newTransaction", newTransactionObject);
+
     $.ajax({
         method: "post",
         url: "http://localhost:3000/transactions",
         contentType: "application/json",
-        data: JSON.stringify,
+        data: JSON.stringify(newTransactionObject),
     }).done((data) => {
         console.log("data", data);
+        showTransactions();
     });
-    showTransactions();
 }
 
 // updateBalance()
@@ -121,18 +129,21 @@ export function handleNewTransaction() {
 
     clearNewTransactionInput();
 
+    // amount = Number(amount)
+    // categoryId: Number(categoryId)
+
     // Call Yen's function
     addNewTransaction({
         newTransaction: {
             // don't need to clairfy the name cause it's inside the function //
             // put in different order//
-            // type: transactionType.val(),
-            accountId: accountId,
-            accountIdFrom: fromAccountId,
-            accountIdTo: toAccountId,
-            categoryId: categoryName,
+            accountId: Number(accountId),
+            accountIdFrom: Number(fromAccountId),
+            accountIdTo: Number(toAccountId),
+            type: transactionType,
+            amount: Number(amount), // convert to num
+            categoryId: Number(categoryId), // convert to num
             description: description,
-            amount: amount,
         },
     });
     // receive the data and post to API //
