@@ -2,13 +2,19 @@
 
 export const SERVER_URL = "http://localhost:3000/"
 
-export function createBaloonAnimation() {
+export function showBaloonAnimation(parent, message) {
     const animationElement = $(`
         <div class="balloon-animation">
             <div class="balloon">
-                <p>A New Category is added.</p>
+                <p>${message}</p>
             </div>
         </div>
     `)
-    return animationElement
+
+    parent.append(animationElement)
+
+    // Remove the animation so that this animation can work next time
+    setTimeout(() => {
+        animationElement.remove()
+    }, 4000)
 }
