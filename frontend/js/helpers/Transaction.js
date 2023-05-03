@@ -39,6 +39,8 @@ export function addNewTransaction() {
 }
 
 export function updateAccounts(accounts /*Array*/) {
+    const newAccountOptions = `<option value="">Select Account</option>`
+
     // update pull-down menu
     for (const account of accounts) {
         const accountOption = `
