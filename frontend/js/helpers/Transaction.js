@@ -1,6 +1,19 @@
 import { addNewAccount, updateBalance } from "./Account.js";
 
+let oldTransactions = [];
+
+// holding valuable and it doesn't missing....
+
 export function showTransactions() {
+    // Clear previous transactions
+    $("#username").empty();
+    $("#transaction").empty();
+    $("#category").empty();
+    $("#description").empty();
+    $("#amount").empty();
+    $("#from").empty();
+    $("#to").empty();
+
     // GET transactions from API
     $.ajax({
         method: "get",
@@ -9,21 +22,40 @@ export function showTransactions() {
         data: JSON.stringify,
     }).done((data) => {
         console.log("data", data);
+        let newTransactions = [];
         $.each(data, (index, transactionDetails) => {
             console.log("transaction details", transactionDetails);
             // Loop through the transactions array
             $.each(transactionDetails, (i, transaction) => {
                 console.log("accountId", transaction.accountId);
                 console.log("transaction", transaction);
-                $("#username").append(`<li>${transaction.accountIdFrom}</li>`);
-                $("#transaction").append(`<li>${transaction.type}</li>`);
-                $("#category").append(`<li>${transaction.categoryId}</li>`);
-                $("#description").append(`<li>${transaction.description}</li>`);
-                $("#amount").append(`<li>${transaction.amount}</li>`);
-                $("#from").append(`<li>${transaction.accountIdFrom}</li>`);
-                $("#to").append(`<li>${transaction.accountIdTo}</li>`);
+                $("#username").append(`<p>${transaction.accountIdFrom}<p>`);
+                $("#transaction").append(`<p>${transaction.type}</p>`);
+                $("#category").append(`<p>${transaction.categoryId}</p>`);
+                $("#description").append(`<p>${transaction.description}</p>`);
+                $("#amount").append(`<p>${transaction.amount}</p>`);
+                $("#from").append(`<p>${transaction.accountIdFrom}</p>`);
+                $("#to").append(`<p>${transaction.accountIdTo}</p>`);
+                newTransactions.push(transaction);
             });
         });
+
+        // Display only new transactions
+        newTransactions.forEach((transaction) => {
+            data = data.filter((t) => t.id !== transaction.id);
+        });
+
+        // Add headers
+        $("#username").prepend("<h3>Username</h3>");
+        $("#transaction").prepend("<h3>Transaction Type</h3>");
+        $("#category").prepend("<h3>Category</h3>");
+        $("#description").prepend("<h3>Description</h3>");
+        $("#amount").prepend("<h3>Amount</h3>");
+        $("#from").prepend("<h3>From Account</h3>");
+        $("#to").prepend("<h3>To Account</h3>");
+
+        console.log("oldTransactions", data); // previous transactions
+        console.log("newTransactions", newTransactions); // new transactions
     });
 }
 
@@ -50,8 +82,24 @@ export function addNewTransaction(newTransactionObject) {
         data: JSON.stringify(newTransactionObject),
     }).done((data) => {
         console.log("data", data);
+        $("#username").val("");
+        $("#transaction").val("");
+        $("#category").val("");
+        $("#description").val("");
+        $("#amount").val("");
+        $("#from").val("");
+        $("#to").val("");
         showTransactions();
     });
+
+    // $.ajax({
+    //     method: "post",
+    //     url: "http://localhost:3000/transactions",
+    //     contentType: "application/json",
+    //     data: JSON.stringify(newTransactionObject),
+    // }).done((data) => {
+    //     console.log("clearData", data);
+    // });
 }
 
 // updateBalance()
