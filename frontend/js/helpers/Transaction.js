@@ -286,3 +286,7 @@ function clearNewTransactionInput() {
 
     updateAccountSelection();
 }
+
+export function updateCategories(categories) {
+    // Store data here
+}
