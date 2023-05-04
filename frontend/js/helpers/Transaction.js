@@ -1,11 +1,13 @@
 import { addNewAccount, updateBalance } from "./Account.js";
 
 let oldTransactions = [];
+let userData = [];
 
 // holding valuable and it doesn't missing....
 
 export function showTransactions() {
     // Clear previous transactions
+    $("#idTransaction").empty();
     $("#username").empty();
     $("#transaction").empty();
     $("#category").empty();
@@ -29,7 +31,16 @@ export function showTransactions() {
             $.each(transactionDetails, (i, transaction) => {
                 console.log("accountId", transaction.accountId);
                 console.log("transaction", transaction);
-                $("#username").append(`<p>${transaction.accountIdFrom}<p>`);
+                // how can I convert
+                let accountName = "";
+                for (const account of userData) {
+                    if (account.id === transaction.accountId) {
+                        accountName = account.username;
+                    }
+                }
+
+                $("#idTransaction").append(`<p>${transaction.id}<p>`);
+                $("#username").append(`<p>${accountName}<p>`);
                 $("#transaction").append(`<p>${transaction.type}</p>`);
                 $("#category").append(`<p>${transaction.categoryId}</p>`);
                 $("#description").append(`<p>${transaction.description}</p>`);
@@ -46,6 +57,7 @@ export function showTransactions() {
         });
 
         // Add headers
+        $("#idTransaction").prepend("<h3>Id</h3>");
         $("#username").prepend("<h3>Username</h3>");
         $("#transaction").prepend("<h3>Transaction Type</h3>");
         $("#category").prepend("<h3>Category</h3>");
@@ -121,6 +133,8 @@ export function updateAccounts(accounts /*Array*/) {
     $("#to-accounts-menu").html(newAccountOptions);
 
     // update accounts in filter
+
+    userData = accounts; // convert id to username
 }
 
 // function's name may need to be changed
