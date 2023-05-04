@@ -2,6 +2,7 @@ import { addNewAccount, updateBalance } from "./Account.js";
 
 let oldTransactions = [];
 let userData = [];
+let catagoryData = [];
 
 // holding valuable and it doesn't missing....
 
@@ -32,17 +33,24 @@ export function showTransactions() {
                 console.log("accountId", transaction.accountId);
                 console.log("transaction", transaction);
                 // how can I convert
+
                 let accountName = "";
                 for (const account of userData) {
                     if (account.id === transaction.accountId) {
                         accountName = account.username;
                     }
                 }
+                let categoryName = "";
+                for (const category of catagoryData) {
+                    if (category.id === transaction.categoryId) {
+                        categoryName = category.name;
+                    }
+                }
 
                 $("#idTransaction").append(`<p>${transaction.id}<p>`);
                 $("#username").append(`<p>${accountName}<p>`);
                 $("#transaction").append(`<p>${transaction.type}</p>`);
-                $("#category").append(`<p>${transaction.categoryId}</p>`);
+                $("#category").append(`<p>${categoryName}</p>`);
                 $("#description").append(`<p>${transaction.description}</p>`);
                 $("#amount").append(`<p>${transaction.amount}</p>`);
                 $("#from").append(`<p>${transaction.accountIdFrom}</p>`);
@@ -289,4 +297,5 @@ function clearNewTransactionInput() {
 
 export function updateCategories(categories) {
     // Store data here
+    catagoryData = categories;
 }
