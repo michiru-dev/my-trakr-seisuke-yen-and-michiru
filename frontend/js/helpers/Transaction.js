@@ -110,6 +110,7 @@ export function addNewTransaction(newTransactionObject) {
         $("#from").val("");
         $("#to").val("");
         showTransactions();
+        updateBalance();
     });
 
     // $.ajax({
