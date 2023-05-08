@@ -1,4 +1,5 @@
 import { SERVER_URL } from './Common.js'
+import { updateCategories } from './Transaction.js'
 const CATEGORY_ENDPOINT = SERVER_URL + "categories"
 
 export function showCategories() {
@@ -10,6 +11,9 @@ export function showCategories() {
     })
     .done((categories) => {
         // Deploy each category to the pull-down menu
+        deployCategories(categories)
+
+        // Pass categories for the transaction section
         updateCategories(categories)
     })
 }
@@ -36,7 +40,7 @@ export function addNewCategory() {
     })
 }
 
-function updateCategories(categories) {
+function deployCategories(categories) {
     // Create HTML of new category options
     let newCategoryOptions = `<option value="">Select Category</option>`
     for(const category of categories) {

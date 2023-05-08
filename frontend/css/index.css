@@ -1,9 +1,9 @@
 body {
-  background-color: #f7f7f7;
-  font-family: Arial, sans-serif;
-  font-size: 16px;
-  color: #333;
-  box-sizing: border-box;
+    background-color: #f7f7f7;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #333;
+    box-sizing: border-box;
 }
 
 main {
@@ -28,27 +28,29 @@ header form {
 }
 
 button {
-  font-size: 16px;
+    font-size: 16px;
 }
 
 input {
-  font-size: 14px;
+    font-size: 14px;
 }
 
-input, select {
-  border: 1px solid gray;
-  border-radius: 5px;
+input,
+select {
+    border: 1px solid gray;
+    border-radius: 5px;
 }
 
-input:focus, select:focus {
-  outline: none;
-  box-shadow: 0 0 5px #0073c5;
-  transition-property: box-shadow;
-  transition-duration: .2s;
+input:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #0073c5;
+    transition-property: box-shadow;
+    transition-duration: 0.2s;
 }
 
-input[type=text] {
-  margin-left: .5rem;
+input[type="text"] {
+    margin-left: 0.5rem;
 }
 
 .summaryAndtransactionDiv {
@@ -105,13 +107,13 @@ button:hover {
     margin-bottom: 1rem;
 }
 
-.accountSummaryBox table {
+table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.accountSummaryBox th,
-.accountSummaryBox td {
+th,
+td {
     padding: 0.5rem;
     border: 1px solid #ccc;
 }
@@ -161,7 +163,7 @@ option {
 }
 
 #transfer-target {
-  display: none;
+    display: none;
 }
 
 #transfer-direction {
@@ -169,14 +171,12 @@ option {
     width: auto;
 }
 
-
 #new-transaction-category {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  align-items: flex-end;
-  gap: 0 1rem;
-
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    align-items: flex-end;
+    gap: 0 1rem;
 }
 .newCategory {
     display: flex;
@@ -197,11 +197,11 @@ option {
 
 #deposit-withdraw-target,
 #transfer-target {
-  height: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 0 1rem;
-  margin-bottom: 1rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0 1rem;
+    margin-bottom: 1rem;
 }
 
 #newDescription {
@@ -234,166 +234,169 @@ option {
     margin-left: 0.5rem;
 }
 
-
 #transaction-options {
-  position: relative;
+    position: relative;
 }
 
-input[name=transaction-option] + label {
-  width: 5.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  border: 2px solid #606365;
-  color: #606365;
-  border-radius: .5rem;
-  padding: .5rem 0rem .5rem 3rem;
-  margin: 0 1rem 0 0;
-  cursor: pointer;
-  letter-spacing: .06rem;
+input[name="transaction-option"] + label {
+    width: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border: 2px solid #606365;
+    color: #606365;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0rem 0.5rem 3rem;
+    margin: 0 1rem 0 0;
+    cursor: pointer;
+    letter-spacing: 0.06rem;
 }
 
-input[name=transaction-option] {
-  width: 1rem;
-  height: 1rem;
-  /* opacity: 0; */
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events : none;
-  display: none;
+input[name="transaction-option"] {
+    width: 1rem;
+    height: 1rem;
+    /* opacity: 0; */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    display: none;
 }
 
-input[name=transaction-option]:checked + label {
-  background-color: #606365;
-  color: white;
-  transition-property: background-color, color;
-  transition-duration: .2s;
+input[name="transaction-option"]:checked + label {
+    background-color: #606365;
+    color: white;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
 }
 
 /* images that have input[] right after themselfves */
-#deposit-image, #withdraw-image, #transfer-image {
-  position: absolute;
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 50%;
-  top: 50%;
-  transform: translateY(-50%);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: #f7f7f7;
-  pointer-events: none;
-  outline: none;
-  box-sizing: border-box;
-  border: 2px solid #f7f7f7;
+#deposit-image,
+#withdraw-image,
+#transfer-image {
+    position: absolute;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: #f7f7f7;
+    pointer-events: none;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid #f7f7f7;
 }
 
-#deposit-image:has(+input[name=transaction-option]:checked),
-#withdraw-image:has(+input[name=transaction-option]:checked) ,
-#transfer-image:has(+input[name=transaction-option]:checked) {
-  border: 2px solid white;
-  background-color: #606365;
+#deposit-image:has(+ input[name="transaction-option"]:checked),
+#withdraw-image:has(+ input[name="transaction-option"]:checked),
+#transfer-image:has(+ input[name="transaction-option"]:checked) {
+    border: 2px solid white;
+    background-color: #606365;
 }
 
 #deposit-image {
-  left: .8rem;
+    left: 0.8rem;
 }
 
 #withdraw-image {
-  left: 10.5rem;
+    left: 10.5rem;
 }
 
 #transfer-image {
-  left: 20.2rem;
+    left: 20.2rem;
 }
 
 .balloon-animation-parent {
-  position: relative;
+    position: relative;
 }
 
-.balloon-down-animation, .balloon-left-animation {
-  position: absolute;
-  opacity: 0;
-  animation-name: notify;
-  animation-duration: 4s;
-  transition-property: opacity;
-  pointer-events: none;
+.balloon-down-animation,
+.balloon-left-animation {
+    position: absolute;
+    opacity: 0;
+    animation-name: notify;
+    animation-duration: 4s;
+    transition-property: opacity;
+    pointer-events: none;
 }
 
 .balloon-down-animation {
-  left: 65%;
-  top: .5rem;
-  transform: translate(-50%, -100%);
+    left: 65%;
+    top: 0.5rem;
+    transform: translate(-50%, -100%);
 }
 
 .balloon-left-animation {
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 @keyframes notify {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 .balloon-down {
-  position: relative;
-  display: inline-block;
-  margin: 1.5em 0;
-  padding: 7px 10px;
-  min-width: 120px;
-  max-width: 100%;
-  color: #555;
-  font-size: 16px;
-  background: #dfffd8;
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 0;
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #dfffd8;
 }
 
 .balloon-down:before {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -15px;
-  border: 15px solid transparent;
-  border-top: 15px solid #dfffd8;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -15px;
+    border: 15px solid transparent;
+    border-top: 15px solid #dfffd8;
 }
 
 .balloon-left {
-  position: relative;
-  display: inline-block;
-  margin: 1.5em 0 1.5em 15px;
-  padding: 7px 10px;
-  min-width: 120px;
-  max-width: 100%;
-  color: #555;
-  font-size: 16px;
-  background: #dfffd8;
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 0 1.5em 15px;
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #dfffd8;
 }
 
 .balloon-left:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -30px;
-  margin-top: -15px;
-  border: 15px solid transparent;
-  border-right: 15px solid #dfffd8;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -30px;
+    margin-top: -15px;
+    border: 15px solid transparent;
+    border-right: 15px solid #dfffd8;
 }
 
-.balloon-down p, .balloon-left p {
-  margin: 0;
-  padding: 0;
-  font-size: .8rem;
+.balloon-down p,
+.balloon-left p {
+    margin: 0;
+    padding: 0;
+    font-size: 0.8rem;
 }

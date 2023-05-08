@@ -1,5 +1,16 @@
 import { addNewAccount, updateBalance } from "./Account.js";
 
+let oldTransactions = [];
+let userData = [];
+let catagoryData = [];
+
+// trying to convert accountIdFrom into name
+// let accountIdFrom = [];
+// trying to convert accountIdTo into name
+// let accountIdTo = [];
+
+// holding valuable and it doesn't missing....
+
 export function showTransactions() {
     // GET transactions from API
     $.ajax({
@@ -8,20 +19,50 @@ export function showTransactions() {
         contentType: "application/json",
         data: JSON.stringify,
     }).done((data) => {
-        console.log("data", data);
+
+        // Empty the transaction table except for the header
+        $(".transactionTable").html("")
+
         $.each(data, (index, transactionDetails) => {
-            console.log("transaction details", transactionDetails);
+
             // Loop through the transactions array
             $.each(transactionDetails, (i, transaction) => {
-                console.log("accountId", transaction.accountId);
-                console.log("transaction", transaction);
-                $("#username").append(`<li>${transaction.accountIdFrom}</li>`);
-                $("#transaction").append(`<li>${transaction.type}</li>`);
-                $("#category").append(`<li>${transaction.categoryId}</li>`);
-                $("#description").append(`<li>${transaction.description}</li>`);
-                $("#amount").append(`<li>${transaction.amount}</li>`);
-                $("#from").append(`<li>${transaction.accountIdFrom}</li>`);
-                $("#to").append(`<li>${transaction.accountIdTo}</li>`);
+ 
+                // Convert account ID into user name
+                let accountName = "-";
+                let accountFromName = "-";
+                let accountToName = "-"
+                for (const account of userData) {
+                    if (account.id === transaction.accountId) {
+                        accountName = account.username;
+                    }
+                    if (account.id === transaction.accountIdFrom) {
+                        accountFromName = account.username;
+                    }
+                    if (account.id === transaction.accountIdTo) {
+                        accountToName = account.username;
+                    }
+                }
+
+                // Convert category ID into category name
+                let categoryName = "";
+                for (const category of catagoryData) {
+                    if (category.id === transaction.categoryId) {
+                        categoryName = category.name;
+                    }
+                }
+
+                const row = $(`<tr class="balloon-animation-parent">`);
+                row.append(`<td>${transaction.id}</td>`);
+                row.append(`<td>${accountName}</td>`);
+                row.append(`<td>${transaction.type}</td>`);
+                row.append(`<td>${categoryName}</td>`);
+                row.append(`<td>${transaction.description}</td>`);
+                row.append(`<td>${transaction.amount}</td>`);
+                row.append(`<td>${accountFromName}</td>`);
+                row.append(`<td>${accountToName}</td>`);
+
+                $(".transactionTable").append(row)
             });
         });
     });
@@ -34,20 +75,54 @@ export function showTransactions() {
 
 // updateBalance()
 
-export function addNewTransaction() {
-    // updateBalance()
+// if the transaction is transfer, accountIdFrom / To will be used
+
+export function addNewTransaction(newTransactionObject) {
+    if (newTransactionObject.newTransaction.type !== "Transfer") {
+        newTransactionObject.newTransaction.accountIdFrom = null;
+        newTransactionObject.newTransaction.accountIdTo = null;
+    }
+
+
+    $.ajax({
+        method: "post",
+        url: "http://localhost:3000/transactions",
+        contentType: "application/json",
+        data: JSON.stringify(newTransactionObject),
+    }).done((data) => {
+
+        $("#username").val("");
+        $("#transaction").val("");
+        $("#category").val("");
+        $("#description").val("");
+        $("#amount").val("");
+        $("#from").val("");
+        $("#to").val("");
+        showTransactions();
+        updateBalance();
+    });
+
+    // $.ajax({
+    //     method: "post",
+    //     url: "http://localhost:3000/transactions",
+    //     contentType: "application/json",
+    //     data: JSON.stringify(newTransactionObject),
+    // }).done((data) => {
+    //     console.log("clearData", data);
+    // });
 }
 
-export function updateAccounts(accounts /*Array*/) {
+// updateBalance()
 
-    let newAccountOptions = `<option value="">Select Account</option>`
+export function updateAccounts(accounts /*Array*/) {
+    let newAccountOptions = `<option value="">Select Account</option>`;
 
     // update pull-down menu
     for (const account of accounts) {
         const accountOption = `
             <option id=${account.id}>${account.username}</option>
-        `
-        newAccountOptions += accountOption
+        `;
+        newAccountOptions += accountOption;
     }
 
     // Deploy HTML to each of the account selection menu
@@ -56,6 +131,8 @@ export function updateAccounts(accounts /*Array*/) {
     $("#to-accounts-menu").html(newAccountOptions);
 
     // update accounts in filter
+
+    userData = accounts; // convert id to username
 }
 
 // function's name may need to be changed
@@ -63,7 +140,7 @@ export function handleNewTransaction() {
     // Get parameters from elements
     let transactionType = $("input[name=transaction-option]:checked").val();
 
-    let accountId = null
+    let accountId = null;
     $("#accounts-menu")
         .children()
         .each((index, account) => {
@@ -72,7 +149,7 @@ export function handleNewTransaction() {
             }
         });
 
-    let fromAccountId = null
+    let fromAccountId = null;
     $("#from-accounts-menu")
         .children()
         .each((index, account) => {
@@ -81,7 +158,7 @@ export function handleNewTransaction() {
             }
         });
 
-    let toAccountId = null
+    let toAccountId = null;
     $("#to-accounts-menu")
         .children()
         .each((index, account) => {
@@ -112,16 +189,23 @@ export function handleNewTransaction() {
 
     clearNewTransactionInput();
 
+    // amount = Number(amount)
+    // categoryId: Number(categoryId)
+
     // Call Yen's function
-    addNewTransaction(
-        transactionType,
-        accountId,
-        fromAccountId,
-        toAccountId,
-        categoryId,
-        description,
-        amount
-    );
+    addNewTransaction({
+        newTransaction: {
+            // don't need to clairfy the name cause it's inside the function //
+            // put in different order//
+            accountId: Number(accountId),
+            accountIdFrom: Number(fromAccountId),
+            accountIdTo: Number(toAccountId),
+            type: transactionType,
+            amount: Number(amount), // convert to num
+            categoryId: Number(categoryId), // convert to num
+            description: description,
+        },
+    });
     // receive the data and post to API //
 }
 
@@ -163,15 +247,17 @@ export function updateAccountSelection() {
         $("#accounts-menu").prop("required", false);
     }
 
-    $("#transaction-options").children("input").each((index, inputElement) => {
-        let imagePath = ""
-        if($(inputElement).prop("checked")) {
-            imagePath = `img/${$(inputElement).next().prop("for")}-on.png`
-        } else {
-            imagePath = `img/${$(inputElement).next().prop("for")}-off.png`
-        }
-        $(inputElement).prev().prop("src", imagePath)
-    })
+    $("#transaction-options")
+        .children("input")
+        .each((index, inputElement) => {
+            let imagePath = "";
+            if ($(inputElement).prop("checked")) {
+                imagePath = `img/${$(inputElement).next().prop("for")}-on.png`;
+            } else {
+                imagePath = `img/${$(inputElement).next().prop("for")}-off.png`;
+            }
+            $(inputElement).prev().prop("src", imagePath);
+        });
 }
 
 function clearNewTransactionInput() {
@@ -197,4 +283,9 @@ function clearNewTransactionInput() {
     $("input[name=amount-input]").val("");
 
     updateAccountSelection();
+}
+
+export function updateCategories(categories) {
+    // Store data here
+    catagoryData = categories;
 }
