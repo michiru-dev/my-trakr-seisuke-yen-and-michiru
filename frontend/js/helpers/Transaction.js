@@ -12,58 +12,61 @@ let catagoryData = [];
 // holding valuable and it doesn't missing....
 
 export function showTransactions() {
-    // GET transactions from API
-    $.ajax({
-        method: "get",
-        url: "http://localhost:3000/transactions",
-        contentType: "application/json",
-        data: JSON.stringify,
-    }).done((data) => {
+    return new Promise((resolve, reject) => {
+        // GET transactions from API
+        $.ajax({
+            method: "get",
+            url: "http://localhost:3000/transactions",
+            contentType: "application/json",
+            data: JSON.stringify,
+        }).done((data) => {
 
-        // Empty the transaction table except for the header
-        $(".transactionTable").html("")
+            // Empty the transaction table except for the header
+            $("#transactionTable").html("")
 
-        $.each(data, (index, transactionDetails) => {
+            $.each(data, (index, transactionDetails) => {
 
-            // Loop through the transactions array
-            $.each(transactionDetails, (i, transaction) => {
- 
-                // Convert account ID into user name
-                let accountName = "-";
-                let accountFromName = "-";
-                let accountToName = "-"
-                for (const account of userData) {
-                    if (account.id === transaction.accountId) {
-                        accountName = account.username;
+                // Loop through the transactions array
+                $.each(transactionDetails, (i, transaction) => {
+    
+                    // Convert account ID into user name
+                    let accountName = "-";
+                    let accountFromName = "-";
+                    let accountToName = "-"
+                    for (const account of userData) {
+                        if (account.id === transaction.accountId) {
+                            accountName = account.username;
+                        }
+                        if (account.id === transaction.accountIdFrom) {
+                            accountFromName = account.username;
+                        }
+                        if (account.id === transaction.accountIdTo) {
+                            accountToName = account.username;
+                        }
                     }
-                    if (account.id === transaction.accountIdFrom) {
-                        accountFromName = account.username;
-                    }
-                    if (account.id === transaction.accountIdTo) {
-                        accountToName = account.username;
-                    }
-                }
 
-                // Convert category ID into category name
-                let categoryName = "";
-                for (const category of catagoryData) {
-                    if (category.id === transaction.categoryId) {
-                        categoryName = category.name;
+                    // Convert category ID into category name
+                    let categoryName = "";
+                    for (const category of catagoryData) {
+                        if (category.id === transaction.categoryId) {
+                            categoryName = category.name;
+                        }
                     }
-                }
 
-                const row = $(`<tr class="balloon-animation-parent">`);
-                row.append(`<td>${transaction.id}</td>`);
-                row.append(`<td>${accountName}</td>`);
-                row.append(`<td>${transaction.type}</td>`);
-                row.append(`<td>${categoryName}</td>`);
-                row.append(`<td>${transaction.description}</td>`);
-                row.append(`<td>${transaction.amount}</td>`);
-                row.append(`<td>${accountFromName}</td>`);
-                row.append(`<td>${accountToName}</td>`);
+                    const row = $(`<tr class="balloon-animation-parent">`);
+                    row.append(`<td>${transaction.id}</td>`);
+                    row.append(`<td>${accountName}</td>`);
+                    row.append(`<td>${transaction.type}</td>`);
+                    row.append(`<td>${categoryName}</td>`);
+                    row.append(`<td>${transaction.description}</td>`);
+                    row.append(`<td>${transaction.amount}</td>`);
+                    row.append(`<td>${accountFromName}</td>`);
+                    row.append(`<td>${accountToName}</td>`);
 
-                $(".transactionTable").append(row)
+                    $("#transactionTable").append(row)
+                });
             });
+            resolve()
         });
     });
 }
@@ -98,7 +101,7 @@ export function addNewTransaction(newTransactionObject) {
         $("#amount").val("");
         $("#from").val("");
         $("#to").val("");
-        showTransactions();
+        showTransactions().then(notifyNewTransactionAdded);
         updateBalance();
     });
 
@@ -178,14 +181,6 @@ export function handleNewTransaction() {
 
     let description = $("input[name=description-input]").val();
     let amount = $("input[name=amount-input]").val();
-
-    console.log("TransactionType:", transactionType);
-    console.log("Account:", accountId);
-    console.log("From Account:", fromAccountId);
-    console.log("To Account:", toAccountId);
-    console.log("Category:", categoryId);
-    console.log("Description", description);
-    console.log("Amount", amount);
 
     clearNewTransactionInput();
 
@@ -288,4 +283,62 @@ function clearNewTransactionInput() {
 export function updateCategories(categories) {
     // Store data here
     catagoryData = categories;
+}
+
+
+function notifyNewTransactionAdded() {
+    // The animation should be displayed only for the new transaction that has just been added
+    // We regard the transaction that has the largest transaction ID as the last one
+    // (This logic might be not good though...)
+    // Also, if the transaction is Transfer, two new rows are supposed to be added
+    let transactionAddedLast = null
+    let transactionAddedSecondLast = null
+    let transactionType = ""
+
+    // Use to judge if a row has the largest transaction ID
+    const numTransactions = $("#transactionTable").children().length
+
+    $("#transactionTable").children().each((index, transactionRow) => {
+        const transactionId = Number($(transactionRow).children().first().text())
+
+        // Find the last row
+        if(transactionId === numTransactions) {
+            transactionAddedLast = $(transactionRow)
+            transactionType = $(transactionRow).children().eq(2/*transaction type*/).text()
+        }
+        // Find the row second from the last
+        else if(transactionId === numTransactions - 1) {
+            // This is not used for Deposit and Withdraw
+            transactionAddedSecondLast = $(transactionRow)
+        }
+    })
+  
+    // Add balloon to the last added transaction row
+    addBalloon(transactionAddedLast)
+
+    // In the case of Transfer, add one more balloon
+    if(transactionType === "Transfer") {
+        addBalloon(transactionAddedSecondLast)
+    }
+}
+
+
+function addBalloon(rowElement) {
+    // Create an element for the animation
+    const message = "A new transaction has been added."
+    const animationElement = $(`
+        <div class="balloon-left-animation">
+            <div class="balloon-left">
+                <p>${message}</p>
+            </div>
+        </div>
+    `)
+    
+    // Add the animation element
+    rowElement.append(animationElement)
+
+    // Remove the animation so that this animation can work next time
+    setTimeout(() => {
+        animationElement.remove()
+    }, 4000)
 }
