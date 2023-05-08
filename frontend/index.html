@@ -153,17 +153,22 @@
                 <label>Filiter by account</label>
                 <select></select>
             </div>
-            <table class="transactionTable">
-                <tr>
-                    <th id="idTransaction">Id</th>
-                    <th id="username">Username</th>
-                    <th id="transaction">Transaction Type</th>
-                    <th id="category">Category</th>
-                    <th id="description">Description</th>
-                    <th id="amount">Amount</th>
-                    <th id="from">From</th>
-                    <th id="to">To</th>
-                </tr>
+            <table>
+                <thead>
+                    <tr>
+                        <th id="idTransaction">Id</th>
+                        <th id="username">Username</th>
+                        <th id="transaction">Transaction Type</th>
+                        <th id="category">Category</th>
+                        <th id="description">Description</th>
+                        <th id="amount">Amount</th>
+                        <th id="from">From</th>
+                        <th id="to">To</th>
+                    </tr>
+                </thead>
+                <tbody class="transactionTable">
+                    <!-- Insert transaction data here by JS -->
+                </tbody>
             </table>
         </main>
         <script type="module" src="./js/helpers/Account.js" defer></script>

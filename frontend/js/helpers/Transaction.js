@@ -12,16 +12,6 @@ let catagoryData = [];
 // holding valuable and it doesn't missing....
 
 export function showTransactions() {
-    // Clear previous transactions
-    $("#idTransaction").empty();
-    $("#username").empty();
-    $("#transaction").empty();
-    $("#category").empty();
-    $("#description").empty();
-    $("#amount").empty();
-    $("#from").empty();
-    $("#to").empty();
-
     // GET transactions from API
     $.ajax({
         method: "get",
@@ -30,7 +20,9 @@ export function showTransactions() {
         data: JSON.stringify,
     }).done((data) => {
 
-        let newTransactions = [];
+        // Empty the transaction table except for the header
+        $(".transactionTable").html("")
+
         $.each(data, (index, transactionDetails) => {
 
             // Loop through the transactions array
@@ -60,34 +52,19 @@ export function showTransactions() {
                     }
                 }
 
-                $("#idTransaction").append(`<p>${transaction.id}<p>`);
-                $("#username").append(`<p>${accountName}<p>`);
-                $("#transaction").append(`<p>${transaction.type}</p>`);
-                $("#category").append(`<p>${categoryName}</p>`);
-                $("#description").append(`<p>${transaction.description}</p>`);
-                $("#amount").append(`<p>${transaction.amount}</p>`);
-                $("#from").append(`<p>${accountFromName}</p>`);
-                $("#to").append(`<p>${accountToName}</p>`);
-                newTransactions.push(transaction);
+                const row = $(`<tr class="balloon-animation-parent">`);
+                row.append(`<td>${transaction.id}</td>`);
+                row.append(`<td>${accountName}</td>`);
+                row.append(`<td>${transaction.type}</td>`);
+                row.append(`<td>${categoryName}</td>`);
+                row.append(`<td>${transaction.description}</td>`);
+                row.append(`<td>${transaction.amount}</td>`);
+                row.append(`<td>${accountFromName}</td>`);
+                row.append(`<td>${accountToName}</td>`);
+
+                $(".transactionTable").append(row)
             });
         });
-
-        // Display only new transactions
-        newTransactions.forEach((transaction) => {
-            data = data.filter((t) => t.id !== transaction.id);
-        });
-
-        // Add headers
-        $("#idTransaction").prepend("<h3>Id</h3>");
-        $("#username").prepend("<h3>Username</h3>");
-        $("#transaction").prepend("<h3>Transaction Type</h3>");
-        $("#category").prepend("<h3>Category</h3>");
-        $("#description").prepend("<h3>Description</h3>");
-        $("#amount").prepend("<h3>Amount</h3>");
-        $("#from").prepend("<h3>From Account</h3>");
-        $("#to").prepend("<h3>To Account</h3>");
-
-
     });
 }
 
