@@ -4,6 +4,11 @@ let oldTransactions = [];
 let userData = [];
 let catagoryData = [];
 
+// trying to convert accountIdFrom into name
+// let accountIdFrom = [];
+// trying to convert accountIdTo into name
+// let accountIdTo = [];
+
 // holding valuable and it doesn't missing....
 
 export function showTransactions() {
@@ -46,6 +51,24 @@ export function showTransactions() {
                         categoryName = category.name;
                     }
                 }
+
+                // trying to convert accountIdFrom into name
+
+                // let accountFromName = "";
+                // for (const account of accountIdFrom) {
+                //     if ( account.accountIdFrom === transaction.accountIdFrom) {
+                //         accountFromName = accountFromName;
+                //     }
+                // }
+
+                // trying to convert accountIdTo into name
+
+                // let accountToName = "";
+                // for (const account of accountIdTo) {
+                //     if (account..accountIdTo === transaction.accountIdTo) {
+                //         accountIdTo = accountToName;
+                //     }
+                // }
 
                 $("#idTransaction").append(`<p>${transaction.id}<p>`);
                 $("#username").append(`<p>${accountName}<p>`);
