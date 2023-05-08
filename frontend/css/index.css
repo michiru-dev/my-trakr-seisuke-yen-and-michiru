@@ -107,13 +107,13 @@ button:hover {
     margin-bottom: 1rem;
 }
 
-.accountSummaryBox table {
+table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.accountSummaryBox th,
-.accountSummaryBox td {
+th,
+td {
     padding: 0.5rem;
     border: 1px solid #ccc;
 }
@@ -399,26 +399,4 @@ input[name="transaction-option"]:checked + label {
     margin: 0;
     padding: 0;
     font-size: 0.8rem;
-}
-
-.transactionTable {
-    width: 100%;
-    margin-top: 0;
-    border-collapse: collapse;
-}
-
-.transactionTable th,
-.transactionTable td {
-    padding: 0;
-    border: 1px solid #ccc;
-    text-align: center;
-}
-
-table th {
-    background-color: #ddd;
-    text-align: center;
-}
-
-.transactionTable p {
-    background-color: #f7f7f7;
 }
