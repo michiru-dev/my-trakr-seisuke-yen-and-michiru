@@ -182,14 +182,6 @@ export function handleNewTransaction() {
     let description = $("input[name=description-input]").val();
     let amount = $("input[name=amount-input]").val();
 
-    console.log("TransactionType:", transactionType);
-    console.log("Account:", accountId);
-    console.log("From Account:", fromAccountId);
-    console.log("To Account:", toAccountId);
-    console.log("Category:", categoryId);
-    console.log("Description", description);
-    console.log("Amount", amount);
-
     clearNewTransactionInput();
 
     // amount = Number(amount)
@@ -295,12 +287,15 @@ export function updateCategories(categories) {
 
 
 function notifyNewTransactionAdded() {
-    // Get the final row
-    // because the animation should be displayed only for the new account that has just been added
+    // The animation should be displayed only for the new transaction that has just been added
+    // We regard the transaction that has the largest transaction ID as the last one
+    // (This logic might be not good though...)
+    // Also, if the transaction is Transfer, two new rows are supposed to be added
     let transactionAddedLast = null
     let transactionAddedSecondLast = null
     let transactionType = ""
 
+    // Use to judge if a row has the largest transaction ID
     const numTransactions = $("#transactionTable").children().length
 
     $("#transactionTable").children().each((index, transactionRow) => {
@@ -313,19 +308,22 @@ function notifyNewTransactionAdded() {
         }
         // Find the row second from the last
         else if(transactionId === numTransactions - 1) {
+            // This is not used for Deposit and Withdraw
             transactionAddedSecondLast = $(transactionRow)
         }
     })
   
-    addBaloon(transactionAddedLast)
+    // Add balloon to the last added transaction row
+    addBalloon(transactionAddedLast)
 
+    // In the case of Transfer, add one more balloon
     if(transactionType === "Transfer") {
-        addBaloon(transactionAddedSecondLast)
+        addBalloon(transactionAddedSecondLast)
     }
 }
 
 
-function addBaloon(rowElement) {
+function addBalloon(rowElement) {
     // Create an element for the animation
     const message = "A new transaction has been added."
     const animationElement = $(`
