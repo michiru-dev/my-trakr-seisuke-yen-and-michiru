@@ -318,7 +318,7 @@ input[name="transaction-option"]:checked + label {
     position: absolute;
     opacity: 0;
     animation-name: notify;
-    animation-duration: 4s;
+    animation-duration: 20s;
     transition-property: opacity;
     pointer-events: none;
 }

@@ -12,58 +12,61 @@ let catagoryData = [];
 // holding valuable and it doesn't missing....
 
 export function showTransactions() {
-    // GET transactions from API
-    $.ajax({
-        method: "get",
-        url: "http://localhost:3000/transactions",
-        contentType: "application/json",
-        data: JSON.stringify,
-    }).done((data) => {
+    return new Promise((resolve, reject) => {
+        // GET transactions from API
+        $.ajax({
+            method: "get",
+            url: "http://localhost:3000/transactions",
+            contentType: "application/json",
+            data: JSON.stringify,
+        }).done((data) => {
 
-        // Empty the transaction table except for the header
-        $(".transactionTable").html("")
+            // Empty the transaction table except for the header
+            $("#transactionTable").html("")
 
-        $.each(data, (index, transactionDetails) => {
+            $.each(data, (index, transactionDetails) => {
 
-            // Loop through the transactions array
-            $.each(transactionDetails, (i, transaction) => {
- 
-                // Convert account ID into user name
-                let accountName = "-";
-                let accountFromName = "-";
-                let accountToName = "-"
-                for (const account of userData) {
-                    if (account.id === transaction.accountId) {
-                        accountName = account.username;
+                // Loop through the transactions array
+                $.each(transactionDetails, (i, transaction) => {
+    
+                    // Convert account ID into user name
+                    let accountName = "-";
+                    let accountFromName = "-";
+                    let accountToName = "-"
+                    for (const account of userData) {
+                        if (account.id === transaction.accountId) {
+                            accountName = account.username;
+                        }
+                        if (account.id === transaction.accountIdFrom) {
+                            accountFromName = account.username;
+                        }
+                        if (account.id === transaction.accountIdTo) {
+                            accountToName = account.username;
+                        }
                     }
-                    if (account.id === transaction.accountIdFrom) {
-                        accountFromName = account.username;
-                    }
-                    if (account.id === transaction.accountIdTo) {
-                        accountToName = account.username;
-                    }
-                }
 
-                // Convert category ID into category name
-                let categoryName = "";
-                for (const category of catagoryData) {
-                    if (category.id === transaction.categoryId) {
-                        categoryName = category.name;
+                    // Convert category ID into category name
+                    let categoryName = "";
+                    for (const category of catagoryData) {
+                        if (category.id === transaction.categoryId) {
+                            categoryName = category.name;
+                        }
                     }
-                }
 
-                const row = $(`<tr class="balloon-animation-parent">`);
-                row.append(`<td>${transaction.id}</td>`);
-                row.append(`<td>${accountName}</td>`);
-                row.append(`<td>${transaction.type}</td>`);
-                row.append(`<td>${categoryName}</td>`);
-                row.append(`<td>${transaction.description}</td>`);
-                row.append(`<td>${transaction.amount}</td>`);
-                row.append(`<td>${accountFromName}</td>`);
-                row.append(`<td>${accountToName}</td>`);
+                    const row = $(`<tr class="balloon-animation-parent">`);
+                    row.append(`<td>${transaction.id}</td>`);
+                    row.append(`<td>${accountName}</td>`);
+                    row.append(`<td>${transaction.type}</td>`);
+                    row.append(`<td>${categoryName}</td>`);
+                    row.append(`<td>${transaction.description}</td>`);
+                    row.append(`<td>${transaction.amount}</td>`);
+                    row.append(`<td>${accountFromName}</td>`);
+                    row.append(`<td>${accountToName}</td>`);
 
-                $(".transactionTable").append(row)
+                    $("#transactionTable").append(row)
+                });
             });
+            resolve()
         });
     });
 }
@@ -98,7 +101,7 @@ export function addNewTransaction(newTransactionObject) {
         $("#amount").val("");
         $("#from").val("");
         $("#to").val("");
-        showTransactions();
+        showTransactions().then(notifyNewTransactionAdded);
         updateBalance();
     });
 
@@ -288,4 +291,56 @@ function clearNewTransactionInput() {
 export function updateCategories(categories) {
     // Store data here
     catagoryData = categories;
+}
+
+
+function notifyNewTransactionAdded() {
+    // Get the final row
+    // because the animation should be displayed only for the new account that has just been added
+    let transactionAddedLast = null
+    let transactionAddedSecondLast = null
+    let transactionType = ""
+
+    const numTransactions = $("#transactionTable").children().length
+
+    $("#transactionTable").children().each((index, transactionRow) => {
+        const transactionId = Number($(transactionRow).children().first().text())
+
+        // Find the last row
+        if(transactionId === numTransactions) {
+            transactionAddedLast = $(transactionRow)
+            transactionType = $(transactionRow).children().eq(2/*transaction type*/).text()
+        }
+        // Find the row second from the last
+        else if(transactionId === numTransactions - 1) {
+            transactionAddedSecondLast = $(transactionRow)
+        }
+    })
+  
+    addBaloon(transactionAddedLast)
+
+    if(transactionType === "Transfer") {
+        addBaloon(transactionAddedSecondLast)
+    }
+}
+
+
+function addBaloon(rowElement) {
+    // Create an element for the animation
+    const message = "A new transaction has been added."
+    const animationElement = $(`
+        <div class="balloon-left-animation">
+            <div class="balloon-left">
+                <p>${message}</p>
+            </div>
+        </div>
+    `)
+    
+    // Add the animation element
+    rowElement.append(animationElement)
+
+    // Remove the animation so that this animation can work next time
+    setTimeout(() => {
+        animationElement.remove()
+    }, 4000)
 }
