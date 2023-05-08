@@ -29,22 +29,30 @@ export function showTransactions() {
         contentType: "application/json",
         data: JSON.stringify,
     }).done((data) => {
-        console.log("data", data);
+
         let newTransactions = [];
         $.each(data, (index, transactionDetails) => {
-            console.log("transaction details", transactionDetails);
+
             // Loop through the transactions array
             $.each(transactionDetails, (i, transaction) => {
-                console.log("accountId", transaction.accountId);
-                console.log("transaction", transaction);
-                // how can I convert
-
-                let accountName = "";
+ 
+                // Convert account ID into user name
+                let accountName = "-";
+                let accountFromName = "-";
+                let accountToName = "-"
                 for (const account of userData) {
                     if (account.id === transaction.accountId) {
                         accountName = account.username;
                     }
+                    if (account.id === transaction.accountIdFrom) {
+                        accountFromName = account.username;
+                    }
+                    if (account.id === transaction.accountIdTo) {
+                        accountToName = account.username;
+                    }
                 }
+
+                // Convert category ID into category name
                 let categoryName = "";
                 for (const category of catagoryData) {
                     if (category.id === transaction.categoryId) {
@@ -52,32 +60,14 @@ export function showTransactions() {
                     }
                 }
 
-                // trying to convert accountIdFrom into name
-
-                // let accountFromName = "";
-                // for (const account of accountIdFrom) {
-                //     if ( account.accountIdFrom === transaction.accountIdFrom) {
-                //         accountFromName = accountFromName;
-                //     }
-                // }
-
-                // trying to convert accountIdTo into name
-
-                // let accountToName = "";
-                // for (const account of accountIdTo) {
-                //     if (account..accountIdTo === transaction.accountIdTo) {
-                //         accountIdTo = accountToName;
-                //     }
-                // }
-
                 $("#idTransaction").append(`<p>${transaction.id}<p>`);
                 $("#username").append(`<p>${accountName}<p>`);
                 $("#transaction").append(`<p>${transaction.type}</p>`);
                 $("#category").append(`<p>${categoryName}</p>`);
                 $("#description").append(`<p>${transaction.description}</p>`);
                 $("#amount").append(`<p>${transaction.amount}</p>`);
-                $("#from").append(`<p>${transaction.accountIdFrom}</p>`);
-                $("#to").append(`<p>${transaction.accountIdTo}</p>`);
+                $("#from").append(`<p>${accountFromName}</p>`);
+                $("#to").append(`<p>${accountToName}</p>`);
                 newTransactions.push(transaction);
             });
         });
@@ -97,8 +87,7 @@ export function showTransactions() {
         $("#from").prepend("<h3>From Account</h3>");
         $("#to").prepend("<h3>To Account</h3>");
 
-        console.log("oldTransactions", data); // previous transactions
-        console.log("newTransactions", newTransactions); // new transactions
+
     });
 }
 
@@ -116,7 +105,7 @@ export function addNewTransaction(newTransactionObject) {
         newTransactionObject.newTransaction.accountIdFrom = null;
         newTransactionObject.newTransaction.accountIdTo = null;
     }
-    console.log("newTransaction", newTransactionObject);
+
 
     $.ajax({
         method: "post",
@@ -124,7 +113,7 @@ export function addNewTransaction(newTransactionObject) {
         contentType: "application/json",
         data: JSON.stringify(newTransactionObject),
     }).done((data) => {
-        console.log("data", data);
+
         $("#username").val("");
         $("#transaction").val("");
         $("#category").val("");

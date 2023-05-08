@@ -38,7 +38,7 @@ export function updateBalance() {
           if (transaction.type === "Deposit") {
             balance = balance + transaction.amount;
             //subtract ammount
-          } else if (transaction.type === "WithDraw") {
+          } else if (transaction.type === "Withdraw") {
             balance = balance - transaction.amount;
           } else if (
             //transfer receive
