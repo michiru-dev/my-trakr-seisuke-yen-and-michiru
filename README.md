@@ -1,6 +1,12 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/HT1aKmPi)
 # MyTrack Project
 
+## Documents
+- [Milestone](https://www.figma.com/file/78LLDUTaq2vxhBqRluAuqX/Milestone(Trker)?type=whiteboard&node-id=0%3A1&t=mmCdFmC1Jtgz2m3H-1)
+- [Data Flow](https://docs.google.com/presentation/d/10-hCNxN3d4AJh0WZEHrMMXQPitqTQ3_9dMtrJPFSnRU/edit?usp=sharing)
+- [Data Structure](https://docs.google.com/spreadsheets/d/1j5NU-WZZVAMb_p5Mvmwy7mDkFdE9nzj9sFKoLxOW6Xs/edit?usp=sharing)
+
+## Overview
 MyTrack is a single page application that can track all your accounts and transactions.
 
 User should be able to create multiple accounts, set transactions like deposits, withdraws and transfer between accounts.
