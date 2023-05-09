@@ -221,13 +221,13 @@ option {
     margin-bottom: 0;
 }
 
-.filiterBox {
+.filterBox {
     width: 20vw;
     display: flex;
     align-items: center;
 }
 
-.filiterBox label {
+.filterBox label {
     white-space: nowrap;
 }
 
