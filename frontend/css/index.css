@@ -62,7 +62,7 @@ input[type="text"] {
 
 #new-transaction {
     width: 40%;
-    padding: 1rem;
+    padding: 1rem 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -98,7 +98,7 @@ button:hover {
 
 .accountSummaryBox {
     width: 35%;
-    padding: 1rem;
+    padding: 1rem 0;
     /* background-color: #f2f2f2; */
     border-radius: 4px;
 }
