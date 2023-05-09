@@ -1,15 +1,9 @@
-import { addNewAccount, updateBalance } from "./Account.js";
+import { SERVER_URL } from './Common.js'
+import { updateBalance } from "./Account.js";
+const TRANSACTIONS_ENDPOINT = SERVER_URL + "transactions"
 
-let oldTransactions = [];
 let userData = [];
 let catagoryData = [];
-
-// trying to convert accountIdFrom into name
-// let accountIdFrom = [];
-// trying to convert accountIdTo into name
-// let accountIdTo = [];
-
-// holding valuable and it doesn't missing....
 
 export function showTransactions() {
     // Return promise because notification requires transaction info after updated
@@ -17,10 +11,11 @@ export function showTransactions() {
         // GET transactions from API
         $.ajax({
             method: "get",
-            url: "http://localhost:3000/transactions",
+            url: TRANSACTIONS_ENDPOINT,
             contentType: "application/json",
             data: JSON.stringify,
         }).done((data) => {
+            console.log(data)
 
             // Empty the transaction table except for the header
             $("#transactionTable").html("")
@@ -52,6 +47,10 @@ export function showTransactions() {
                         if (category.id === transaction.categoryId) {
                             categoryName = category.name;
                         }
+                    }
+
+                    if(transaction.description.length === 0) {
+                        transaction.description = "-"
                     }
 
                     const row = $(`<tr class="balloon-animation-parent">`);
@@ -94,7 +93,7 @@ export function addNewTransaction(newTransactionObject) {
 
     $.ajax({
         method: "post",
-        url: "http://localhost:3000/transactions",
+        url: TRANSACTIONS_ENDPOINT,
         dataType:'json',
         data: stringNewTransactionObject
     }).done((data) => {
@@ -110,14 +109,6 @@ export function addNewTransaction(newTransactionObject) {
         updateBalance();
     });
 
-    // $.ajax({
-    //     method: "post",
-    //     url: "http://localhost:3000/transactions",
-    //     contentType: "application/json",
-    //     data: JSON.stringify(newTransactionObject),
-    // }).done((data) => {
-    //     console.log("clearData", data);
-    // });
 }
 
 // updateBalance()
@@ -188,9 +179,6 @@ export function handleNewTransaction() {
     let amount = $("input[name=amount-input]").val();
 
     clearNewTransactionInput();
-
-    // amount = Number(amount)
-    // categoryId: Number(categoryId)
 
     // Call Yen's function
     addNewTransaction({

@@ -1,11 +1,13 @@
+import { SERVER_URL } from './Common.js'
 import { updateAccounts } from "./Transaction.js";
+const ACCOUNT_ENDPOINT = SERVER_URL + "accounts"
 
 
 // POST a new account
 // Show them to the list
 export function addNewAccount() {
   const accountName = $(".addNewAccountText").val();
-  $.post("http://localhost:3000/accounts", {
+  $.post(ACCOUNT_ENDPOINT, {
     newAccount: accountName,
   })
     .done(() => {
@@ -24,8 +26,9 @@ export function updateBalance() {
 
   // Return promise because transaction list, pull-down menu, and notification process require account data
   return new Promise((resolve, reject) => {
-    $.get("http://localhost:3000/accounts")
+    $.get(ACCOUNT_ENDPOINT)
     .done((accounts) => {
+      console.log(accounts);
       const accountAndBalance = $("#accountAndBalance");
       accountAndBalance.html("")
       $.each(accounts, (index, account) => {
@@ -33,7 +36,6 @@ export function updateBalance() {
         const row = $(`<tr class="balloon-animation-parent">`);
         const accountName = $("<td>").text(account.username);
         $.each(account.transactions, (index, transaction) => {
-          console.log(transaction);
           //add amount
           if (transaction.type === "Deposit") {
             balance = balance + transaction.amount;

@@ -13,6 +13,8 @@ export function showCategories() {
             dataType:'json',
         })
         .done((categories) => {
+            console.log(categories);
+            
             // Deploy each category to the pull-down menu
             deployCategories(categories)
 

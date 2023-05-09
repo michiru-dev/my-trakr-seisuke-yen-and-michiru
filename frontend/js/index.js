@@ -10,11 +10,13 @@ import { addNewAccount } from "./helpers/Account.js";
 
 $(() => {
     updateBalance().then(() => {
+        // Wait for updateBalance because these two functions below need account data
         updateAccountSelection();
-        showCategories().then(() => {
-            showTransactions();
-        })
-    })
+        return showCategories();
+    }).then(() => {
+        // Wait for showCategories because this function below needs category data
+        return showTransactions();
+    });
 
     $("#add-new-category-btn").on("click", () => {
         addNewCategory();
