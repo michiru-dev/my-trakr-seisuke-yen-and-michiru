@@ -3,18 +3,26 @@ import { updateCategories } from './Transaction.js'
 const CATEGORY_ENDPOINT = SERVER_URL + "categories"
 
 export function showCategories() {
-    // Get categories from the server
-    $.ajax({
-        url: CATEGORY_ENDPOINT,
-        type: 'get',
-        dataType:'json',
-    })
-    .done((categories) => {
-        // Deploy each category to the pull-down menu
-        deployCategories(categories)
 
-        // Pass categories for the transaction section
-        updateCategories(categories)
+    // Return promise because transaction list requires category data
+    return new Promise((resolve, reject) => {
+        // Get categories from the server
+        $.ajax({
+            url: CATEGORY_ENDPOINT,
+            type: 'get',
+            dataType:'json',
+        })
+        .done((categories) => {
+            console.log(categories);
+            
+            // Deploy each category to the pull-down menu
+            deployCategories(categories)
+
+            // Pass categories for the transaction section
+            updateCategories(categories)
+
+            resolve()
+        })
     })
 }
 

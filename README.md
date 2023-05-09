@@ -1,4 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/HT1aKmPi)
+
 # MyTrack Project
 
 ## Documents
@@ -95,6 +96,8 @@ All the requests should have the domain of `http://localhost:3000/`.
   }
 }
 ```
+
+> Because it is a nested object, `newTransaction` should be stringified before sending it to the server.
 
 - GET `/categories`: get all the categories
 - POST `/categories`: saves a new category
