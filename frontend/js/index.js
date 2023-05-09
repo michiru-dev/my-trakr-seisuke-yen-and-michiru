@@ -9,10 +9,12 @@ import { showTransactions } from "./helpers/Transaction.js";
 import { addNewAccount } from "./helpers/Account.js";
 
 $(() => {
-    updateBalance();
-    showTransactions();
-    showCategories();
-    updateAccountSelection();
+    updateBalance().then(() => {
+        updateAccountSelection();
+        showCategories().then(() => {
+            showTransactions();
+        })
+    })
 
     $("#add-new-category-btn").on("click", () => {
         addNewCategory();

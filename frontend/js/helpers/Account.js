@@ -22,7 +22,7 @@ export function addNewAccount() {
 //not sure if this works with transactions URL
 export function updateBalance() {
 
-  // Return promise for the following process after this function
+  // Return promise because transaction list, pull-down menu, and notification process require account data
   return new Promise((resolve, reject) => {
     $.get("http://localhost:3000/accounts")
     .done((accounts) => {

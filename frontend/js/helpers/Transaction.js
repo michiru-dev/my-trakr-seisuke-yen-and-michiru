@@ -12,6 +12,7 @@ let catagoryData = [];
 // holding valuable and it doesn't missing....
 
 export function showTransactions() {
+    // Return promise because notification requires transaction info after updated
     return new Promise((resolve, reject) => {
         // GET transactions from API
         $.ajax({
