@@ -86,12 +86,16 @@ export function addNewTransaction(newTransactionObject) {
         newTransactionObject.newTransaction.accountIdTo = null;
     }
 
+    // Convert the content into JSON text
+    const stringNewTransactionObject = {
+        newTransaction: JSON.stringify(newTransactionObject.newTransaction)
+    }
 
     $.ajax({
         method: "post",
         url: "http://localhost:3000/transactions",
-        contentType: "application/json",
-        data: JSON.stringify(newTransactionObject),
+        dataType:'json',
+        data: stringNewTransactionObject
     }).done((data) => {
 
         $("#username").val("");
